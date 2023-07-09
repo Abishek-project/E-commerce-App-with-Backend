@@ -1,5 +1,6 @@
-import 'package:ecommerce/screens/login&register/login_view.dart';
+import 'package:ecommerce/app_routing.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +12,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'E-Commerce',
       theme: ThemeData(),
-      home: const LoginView(),
+      initialBinding: AppRoutes.initialBinding,
+      initialRoute: AppRoutes.initialPage,
+      getPages: AppRoutes.routes,
     );
   }
 }
