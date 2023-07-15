@@ -5,6 +5,7 @@ class LoginAndRegisterationBinding extends Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut(() => LoginAndRegisterationController());
+    Get.lazyPut<LoginAndRegisterationController>(
+        () => LoginAndRegisterationController());
   }
 }

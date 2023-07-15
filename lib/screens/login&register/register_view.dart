@@ -5,7 +5,9 @@ import 'package:ecommerce/screens/login&register/login_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../constants/app_assets.dart';
 import '../../constants/app_path.dart';
+import '../../constants/app_strings.dart';
 import '../components/custom_textfield.dart';
 import '../components/social_button.dart';
 
@@ -14,46 +16,59 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  welcomeText(),
-                  signUpDescription(),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  emailTextField(),
-                  const SizedBox(height: 15),
-                  userTextField(),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  passwordTextField(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  dividerWidget(),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  socialButton(),
-                  signUPButton(),
-                  loginWidget(),
-                ],
+    return GestureDetector(
+      onTap: () {
+        // call this method here to hide soft keyboard
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    welcomeText(),
+                    signUpDescription(),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Form(
+                      key: controller.formKey1,
+                      child: Column(
+                        children: [
+                          emailTextField(),
+                          const SizedBox(height: 15),
+                          userTextField(),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          passwordTextField(),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      ),
+                    ),
+                    dividerWidget(),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    socialButton(),
+                    signUPButton(context),
+                    loginWidget(),
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          )
-        ],
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -68,7 +83,7 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             text: TextSpan(
               children: [
                 TextSpan(
-                    text: "Already have a account ?",
+                    text: AppStrings.alreadyHaveAccount,
                     style: AppTypography.appSubTitle1
                         .copyWith(color: Appcolors.lightGray09)),
                 const WidgetSpan(
@@ -77,48 +92,20 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
                   ),
                 ),
                 TextSpan(
-                  text: "Login",
+                  text: AppStrings.login,
                   style: AppTypography.appSubTitlebold
                       .copyWith(color: Appcolors.blue),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       // Single tapped.
-                      Get.toNamed(AppPaths.login);
+                      Get.delete();
+                      Get.offNamed(AppPaths.login);
                     },
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Padding bottomButton() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 50, right: 50),
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            children: [
-              TextSpan(
-                  text:
-                      "By connecting your account confirm that you agree with our",
-                  style: AppTypography.appSubTitle1
-                      .copyWith(color: Appcolors.lightGray09)),
-              const WidgetSpan(
-                  child: SizedBox(
-                width: 5,
-              )),
-              TextSpan(
-                  text: "Terms and condition.",
-                  style: AppTypography.appSubTitlebold
-                      .copyWith(color: Appcolors.appBlackDark))
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -132,16 +119,25 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Password",
+                AppStrings.password,
                 style: AppTypography.bodyMedium2,
               ),
             ],
           ),
         ),
         TextFieldWidget(
+          validator: (value) {
+            if (value == null || value == "") {
+              return AppStrings.enteryourpassword;
+            }
+            if (value.length < 6) {
+              return AppStrings.passwordValidation;
+            }
+            return null;
+          },
           controller: controller.registrationPassword,
           obscureText: false,
-          hintText: "Password",
+          hintText: AppStrings.password,
           prefixIcon: Icon(
             Icons.lock,
             color: Appcolors.lightGray09,
@@ -160,16 +156,22 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Email",
+                AppStrings.email,
                 style: AppTypography.bodyMedium2,
               ),
             ],
           ),
         ),
         TextFieldWidget(
+          validator: (value) {
+            if (value == null || value == "") {
+              return AppStrings.enteryouremail;
+            }
+            return null;
+          },
           controller: controller.registrationEmail,
           obscureText: false,
-          hintText: "Email address",
+          hintText: AppStrings.emailAddress,
           prefixIcon: Icon(
             Icons.email,
             color: Appcolors.lightGray09,
@@ -188,16 +190,22 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Username",
+                AppStrings.username,
                 style: AppTypography.bodyMedium2,
               ),
             ],
           ),
         ),
         TextFieldWidget(
+          validator: (value) {
+            if (value == null || value == "") {
+              return AppStrings.enteryourName;
+            }
+            return null;
+          },
           controller: controller.userName,
           obscureText: false,
-          hintText: "User name",
+          hintText: AppStrings.username,
           prefixIcon: Icon(
             Icons.person,
             color: Appcolors.lightGray09,
@@ -208,14 +216,14 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
   }
 
   Text signUpDescription() {
-    return Text("Sign up and we will continue",
+    return Text(AppStrings.signUpDescription,
         style:
             AppTypography.appSubTitle4.copyWith(color: Appcolors.lightGray09));
   }
 
   Text welcomeText() {
     return Text(
-      "Let's Get Started!",
+      AppStrings.letGeStarted,
       style: AppTypography.appTitle,
     );
   }
@@ -224,7 +232,7 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text("Forgot your Password?",
+        Text(AppStrings.forgotyourpassword,
             style: AppTypography.appSubTitle1
                 .copyWith(color: Appcolors.darkGray01)),
       ],
@@ -246,7 +254,7 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             width: 10,
           ),
           Text(
-            "Or",
+            AppStrings.or,
             style: AppTypography.appSubTitle2
                 .copyWith(color: Appcolors.lightGray09),
           ),
@@ -271,26 +279,51 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SocialButton(
-            iconName: "assets/facebook.svg",
+            iconName: AppAssets.faceBook,
           ),
           SocialButton(
-            iconName: "assets/google.svg",
+            iconName: AppAssets.google,
           ),
           SocialButton(
-            iconName: "assets/apple.svg",
+            iconName: AppAssets.apple,
           ),
         ],
       ),
     );
   }
 
-  Padding signUPButton() {
+  Padding signUPButton(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 35, right: 10, left: 10),
-      child: Button(
-        buttonText: "Sign Up",
-        onTap: (() {}),
-      ),
+      child: Obx(() => Button(
+            onTap: (() {
+              if (controller.formKey1.currentState!.validate()) {
+                controller.isSignUp.value = true;
+
+                controller.userSignUp(
+                    controller.userName.text,
+                    controller.registrationEmail.text,
+                    controller.registrationPassword.text);
+              }
+            }),
+            child: controller.isSignUp.value
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 1,
+                    ),
+                  )
+                : const Center(
+                    child: Text(
+                      AppStrings.signUp,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+          )),
     );
   }
 }

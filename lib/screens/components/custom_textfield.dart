@@ -6,18 +6,21 @@ class TextFieldWidget extends StatelessWidget {
   bool obscureText;
   String hintText;
   Widget prefixIcon;
+  String? Function(String?)? validator;
 
   TextFieldWidget(
       {Key? key,
       required this.controller,
       required this.obscureText,
       required this.prefixIcon,
+      required this.validator,
       required this.hintText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(

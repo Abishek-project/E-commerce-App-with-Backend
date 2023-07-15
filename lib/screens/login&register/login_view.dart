@@ -1,9 +1,10 @@
+import 'package:ecommerce/constants/app_assets.dart';
 import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/constants/app_path.dart';
+import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/screens/components/custom_button.dart';
 import 'package:ecommerce/screens/login&register/login_controller.dart';
-import 'package:ecommerce/screens/login&register/register_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,49 +16,62 @@ class LoginView extends GetView<LoginAndRegisterationController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  welcomeText(),
-                  loginDescription(),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  emailTextField(),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  passwordTextField(),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  forgotwidget(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  dividerWidget(),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                  socialButton(),
-                  loginButton(),
-                  registerWidget(),
-                ],
+    return GestureDetector(
+      onTap: () {
+        // call this method here to hide soft keyboard
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    welcomeText(),
+                    loginDescription(),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    Form(
+                      key: controller.formKey2,
+                      child: Column(
+                        children: [
+                          emailTextField(),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          passwordTextField(),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                        ],
+                      ),
+                    ),
+                    forgotwidget(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    dividerWidget(),
+                    const SizedBox(
+                      height: 35,
+                    ),
+                    socialButton(),
+                    loginButton(),
+                    registerWidget(),
+                  ],
+                ),
               ),
             ),
-          ),
-          bottomButton(),
-          const SizedBox(
-            height: 20,
-          )
-        ],
+            bottomButton(),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -72,7 +86,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
             text: TextSpan(
               children: [
                 TextSpan(
-                    text: "Not a member ?",
+                    text: AppStrings.notMember,
                     style: AppTypography.appSubTitle1
                         .copyWith(color: Appcolors.lightGray09)),
                 const WidgetSpan(
@@ -81,13 +95,14 @@ class LoginView extends GetView<LoginAndRegisterationController> {
                   ),
                 ),
                 TextSpan(
-                  text: "Register now",
+                  text: AppStrings.registerNow,
                   style: AppTypography.appSubTitlebold
                       .copyWith(color: Appcolors.blue),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       // Single tapped.
-                      Get.toNamed(AppPaths.registration);
+                      Get.delete();
+                      Get.offNamed(AppPaths.registration);
                     },
                 ),
               ],
@@ -108,8 +123,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
           text: TextSpan(
             children: [
               TextSpan(
-                  text:
-                      "By connecting your account confirm that you agree with our",
+                  text: AppStrings.bottomDescription,
                   style: AppTypography.appSubTitle1
                       .copyWith(color: Appcolors.lightGray09)),
               const WidgetSpan(
@@ -117,7 +131,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
                 width: 5,
               )),
               TextSpan(
-                  text: "Terms and condition.",
+                  text: AppStrings.termsAndCondition,
                   style: AppTypography.appSubTitlebold
                       .copyWith(color: Appcolors.appBlackDark))
             ],
@@ -136,16 +150,25 @@ class LoginView extends GetView<LoginAndRegisterationController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Password",
+                AppStrings.password,
                 style: AppTypography.bodyMedium2,
               ),
             ],
           ),
         ),
         TextFieldWidget(
-          controller: controller.loginEmail,
+          validator: (value) {
+            if (value == null || value == "") {
+              return AppStrings.enteryourpassword;
+            }
+            if (value.length < 6) {
+              return AppStrings.passwordValidation;
+            }
+            return null;
+          },
+          controller: controller.loginPassword,
           obscureText: false,
-          hintText: "Password",
+          hintText: AppStrings.password,
           prefixIcon: Icon(
             Icons.lock,
             color: Appcolors.lightGray09,
@@ -164,16 +187,25 @@ class LoginView extends GetView<LoginAndRegisterationController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "Username",
+                AppStrings.username,
                 style: AppTypography.bodyMedium2,
               ),
             ],
           ),
         ),
         TextFieldWidget(
-          controller: controller.loginPassword,
+          validator: (value) {
+            if (value == null || value == "") {
+              return AppStrings.enteryouremail;
+            }
+            if (value.length < 6) {
+              return AppStrings.passwordValidation;
+            }
+            return null;
+          },
+          controller: controller.loginEmail,
           obscureText: false,
-          hintText: "Email address",
+          hintText: AppStrings.emailAddress,
           prefixIcon: Icon(
             Icons.person,
             color: Appcolors.lightGray09,
@@ -184,14 +216,14 @@ class LoginView extends GetView<LoginAndRegisterationController> {
   }
 
   Text loginDescription() {
-    return Text("Please enter your data to continue",
+    return Text(AppStrings.loginDescription,
         style:
             AppTypography.appSubTitle4.copyWith(color: Appcolors.lightGray09));
   }
 
   Text welcomeText() {
     return Text(
-      "Welcome!",
+      AppStrings.welcome,
       style: AppTypography.appTitle,
     );
   }
@@ -202,7 +234,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text("Forgot your Password?",
+          Text(AppStrings.forgotyourpassword,
               style: AppTypography.appSubTitle1
                   .copyWith(color: Appcolors.darkGray01)),
         ],
@@ -225,7 +257,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
             width: 10,
           ),
           Text(
-            "Or",
+            AppStrings.or,
             style: AppTypography.appSubTitle2
                 .copyWith(color: Appcolors.lightGray09),
           ),
@@ -250,13 +282,13 @@ class LoginView extends GetView<LoginAndRegisterationController> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SocialButton(
-            iconName: "assets/facebook.svg",
+            iconName: AppAssets.faceBook,
           ),
           SocialButton(
-            iconName: "assets/google.svg",
+            iconName: AppAssets.google,
           ),
           SocialButton(
-            iconName: "assets/apple.svg",
+            iconName: AppAssets.apple,
           ),
         ],
       ),
@@ -266,10 +298,33 @@ class LoginView extends GetView<LoginAndRegisterationController> {
   Padding loginButton() {
     return Padding(
       padding: const EdgeInsets.only(top: 35, right: 10, left: 10),
-      child: Button(
-        buttonText: "Login",
-        onTap: (() {}),
-      ),
+      child: Obx(() => Button(
+            onTap: (() {
+              if (controller.formKey2.currentState!.validate()) {
+                controller.isLogin.value = true;
+
+                controller.userSignIn(
+                    controller.loginEmail.text, controller.loginPassword.text);
+              }
+            }),
+            child: controller.isLogin.value
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 1,
+                    ),
+                  )
+                : const Center(
+                    child: Text(
+                      AppStrings.login,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+          )),
     );
   }
 }
