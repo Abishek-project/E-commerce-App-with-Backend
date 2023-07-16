@@ -3,4 +3,5 @@ class ApiUrl {
 
   static String signUp = "/signup";
   static String signIn = "/signin";
+  static String tokenIsValid = "/tokenIsValid";
 }

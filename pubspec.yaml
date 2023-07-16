@@ -39,6 +39,17 @@ dependencies:
   google_fonts: ^4.0.4
   flutter_svg: ^1.1.6
   http: ^0.13.5
+  shared_preferences: ^2.2.0
+  lottie: ^2.3.2
+  flutter_native_splash: ^2.2.18
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: false
+  background_image: "assets/splashScreen.jpg"
+  android_12:
+    background_image_android: "assets/splashScreen.jpg"
 
 dev_dependencies:
   flutter_test:

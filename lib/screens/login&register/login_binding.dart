@@ -6,6 +6,7 @@ class LoginAndRegisterationBinding extends Bindings {
   void dependencies() {
     // TODO: implement dependencies
     Get.lazyPut<LoginAndRegisterationController>(
-        () => LoginAndRegisterationController());
+      () => LoginAndRegisterationController(),
+    );
   }
 }
