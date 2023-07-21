@@ -22,4 +22,7 @@ class AppStrings {
   static const String welcome = "Welcome!";
   static const String passwordValidation =
       "Password should be at least 6 characters long";
+  static const String categories = "Categories";
+  static const String specialOffers = "Special offers";
+  static const String popularProducts = "Popular products";
 }

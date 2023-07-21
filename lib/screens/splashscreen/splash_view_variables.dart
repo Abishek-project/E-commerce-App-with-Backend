@@ -1,5 +1,5 @@
-import 'package:ecommerce/services/auth_service.dart';
+// import 'package:ecommerce/services/auth_service.dart';
 
-class Splashvariable {
-  AuthService authService = AuthService();
-}
+// class Splashvariable {
+//   AuthService authService = AuthService();
+// }

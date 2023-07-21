@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTypography {
   static TextStyle appTitle =
       GoogleFonts.poppins(fontSize: 30, fontWeight: FontWeight.w600);
+  static TextStyle appTitle2 =
+      GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w600);
   static TextStyle appSubTitle1 =
       GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400);
   static TextStyle appSubTitlebold =
@@ -14,6 +16,8 @@ class AppTypography {
       GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w400);
   static TextStyle appSubTitle4 =
       GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500);
+  static TextStyle appSubTitle5 =
+      GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700);
   static TextStyle appSubTitle3 =
       GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w600);
   static TextStyle appHelpText =

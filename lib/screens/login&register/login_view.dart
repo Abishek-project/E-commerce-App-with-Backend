@@ -23,54 +23,59 @@ class LoginView extends GetView<LoginAndRegisterationController> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    welcomeText(),
-                    loginDescription(),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    Form(
-                      key: controller.formKey2,
-                      child: Column(
-                        children: [
-                          emailTextField(),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                          passwordTextField(),
-                          const SizedBox(
-                            height: 12,
-                          ),
-                        ],
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 19, right: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      welcomeText(),
+                      loginDescription(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
                       ),
-                    ),
-                    forgotwidget(),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    dividerWidget(),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    socialButton(),
-                    loginButton(),
-                    registerWidget(),
-                  ],
+                      Form(
+                        key: controller.formKey2,
+                        child: Column(
+                          children: [
+                            emailTextField(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            passwordTextField(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                          ],
+                        ),
+                      ),
+                      forgotwidget(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      dividerWidget(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      socialButton(),
+                      loginButton(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      registerWidget(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            bottomButton(),
-            const SizedBox(
-              height: 20,
-            )
-          ],
+              bottomButton(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -78,7 +83,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
 
   Padding registerWidget() {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, right: 15),
+      padding: const EdgeInsets.only(right: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

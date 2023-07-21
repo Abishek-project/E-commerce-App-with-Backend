@@ -23,89 +23,99 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    welcomeText(),
-                    signUpDescription(),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Form(
-                      key: controller.formKey1,
-                      child: Column(
-                        children: [
-                          emailTextField(),
-                          const SizedBox(height: 15),
-                          userTextField(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          passwordTextField(),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      welcomeText(),
+                      signUpDescription(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.04,
                       ),
-                    ),
-                    dividerWidget(),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    socialButton(),
-                    signUPButton(context),
-                    loginWidget(),
-                  ],
+                      Form(
+                        key: controller.formKey1,
+                        child: Column(
+                          children: [
+                            emailTextField(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            userTextField(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            passwordTextField(),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                          ],
+                        ),
+                      ),
+                      dividerWidget(),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      socialButton(),
+                      signUPButton(context),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            )
-          ],
+              loginWidget(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Padding loginWidget() {
+  loginWidget() {
     return Padding(
-      padding: const EdgeInsets.only(top: 25, right: 15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                    text: AppStrings.alreadyHaveAccount,
-                    style: AppTypography.appSubTitle1
-                        .copyWith(color: Appcolors.lightGray09)),
-                const WidgetSpan(
-                  child: SizedBox(
-                    width: 5,
+      padding: const EdgeInsets.only(right: 15),
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                      text: AppStrings.alreadyHaveAccount,
+                      style: AppTypography.appSubTitle1
+                          .copyWith(color: Appcolors.lightGray09)),
+                  const WidgetSpan(
+                    child: SizedBox(
+                      width: 5,
+                    ),
                   ),
-                ),
-                TextSpan(
-                  text: AppStrings.login,
-                  style: AppTypography.appSubTitlebold
-                      .copyWith(color: Appcolors.blue),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      // Single tapped.
-                      Get.delete();
-                      Get.offNamed(AppPaths.login);
-                    },
-                ),
-              ],
+                  TextSpan(
+                    text: AppStrings.login,
+                    style: AppTypography.appSubTitlebold
+                        .copyWith(color: Appcolors.blue),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        // Single tapped.
+                        Get.delete();
+                        Get.offNamed(AppPaths.login);
+                      },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

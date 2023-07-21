@@ -7,13 +7,14 @@ class TextFieldWidget extends StatelessWidget {
   String hintText;
   Widget prefixIcon;
   String? Function(String?)? validator;
-
+  Color? prefixIconColor;
   TextFieldWidget(
       {Key? key,
       required this.controller,
       required this.obscureText,
       required this.prefixIcon,
-      required this.validator,
+      this.validator,
+      this.prefixIconColor,
       required this.hintText})
       : super(key: key);
 
@@ -25,6 +26,7 @@ class TextFieldWidget extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
+        prefixIconColor: prefixIconColor,
         hintText: hintText,
         enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.white),
