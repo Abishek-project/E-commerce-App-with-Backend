@@ -1,5 +1,4 @@
 import 'package:ecommerce/constants/app_assets.dart';
-import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/screens/components/bottom_navigation.dart';
 import 'package:ecommerce/screens/home/home_view.dart';
 import 'package:ecommerce/screens/main/main_view_controller.dart';

@@ -42,6 +42,9 @@ dependencies:
   shared_preferences: ^2.2.0
   lottie: ^2.3.2
   flutter_native_splash: ^2.2.18
+  dotted_border: ^2.0.0+3
+  file_picker: ^5.3.1
+  carousel_slider: ^4.2.1
 
 flutter_native_splash:
   android: true

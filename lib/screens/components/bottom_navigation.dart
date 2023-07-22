@@ -26,10 +26,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
       onTap: (value) {
-        onTap;
+        onTap!(value);
       },
-      unselectedItemColor: Appcolors.darkGray,
-      selectedItemColor: Appcolors.appMainColor,
       currentIndex: currentIndex,
       items: [
         BottomNavigationBarItem(
@@ -38,8 +36,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               color: currentIndex == 0
                   ? Appcolors.appMainColor
                   : Appcolors.darkGray,
-              height: 20,
-              width: 20,
+              height: 25,
+              width: 25,
             ),
             label: ""),
         BottomNavigationBarItem(
@@ -47,8 +45,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
             bottomIconTwo!,
             color:
                 currentIndex == 1 ? Appcolors.appMainColor : Appcolors.darkGray,
-            height: 20,
-            width: 20,
+            height: 25,
+            width: 25,
           ),
           label: "",
         ),
@@ -58,8 +56,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               color: currentIndex == 2
                   ? Appcolors.appMainColor
                   : Appcolors.darkGray,
-              height: 20,
-              width: 20,
+              height: 25,
+              width: 25,
             ),
             label: ""),
       ],

@@ -5,22 +5,25 @@ class TextFieldWidget extends StatelessWidget {
   TextEditingController controller;
   bool obscureText;
   String hintText;
-  Widget prefixIcon;
+  Widget? prefixIcon;
   String? Function(String?)? validator;
   Color? prefixIconColor;
+  int? maxLines;
   TextFieldWidget(
       {Key? key,
       required this.controller,
       required this.obscureText,
-      required this.prefixIcon,
+      this.prefixIcon,
       this.validator,
       this.prefixIconColor,
+      this.maxLines = 1,
       required this.hintText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       validator: validator,
       controller: controller,
       obscureText: obscureText,

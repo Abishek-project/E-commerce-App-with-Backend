@@ -66,8 +66,9 @@ class LoginAndRegisterationController extends GetxController
         await pref.setString(SharedPreferenceKey.appUser, response.body);
 
         GlobalController.appUser = User.fromJson(response.body);
-
-        Get.offNamed(AppPaths.home);
+        GlobalController.appUser!.type == "admin"
+            ? Get.offAllNamed(AppPaths.adminView)
+            : Get.offNamed(AppPaths.home);
       }
     } catch (e) {
       isLogin.value = false;

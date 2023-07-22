@@ -25,4 +25,12 @@ class AppStrings {
   static const String categories = "Categories";
   static const String specialOffers = "Special offers";
   static const String popularProducts = "Popular products";
+  static const String helloAdmin = "Hello! Admin";
+  static const String addProducts = "Add Products";
+  static const String selectProducts = "Select Product Images";
+  static const String productName = "Product Name";
+  static const String description = "Description";
+  static const String price = "Price";
+  static const String quantity = "Quantity";
+  static const String sell = "Sell";
 }
