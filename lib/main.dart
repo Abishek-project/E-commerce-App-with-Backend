@@ -3,6 +3,7 @@ import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/home/home_view_binding.dart';
 import 'package:ecommerce/screens/login&register/login_binding.dart';
+import 'package:ecommerce/screens/main/main_view_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -33,14 +34,14 @@ class MyApp extends StatelessWidget {
   static String determineInitialRoute() {
     return GlobalController.appUser != null &&
             GlobalController.appUser!.token != ""
-        ? AppPaths.home
+        ? AppPaths.mainView
         : AppPaths.login;
   }
 
   static determineInitialBinding() {
     return GlobalController.appUser != null &&
             GlobalController.appUser!.token != ""
-        ? HomeViewBinding()
+        ? MainViewBinding()
         : LoginAndRegisterationBinding();
   }
 

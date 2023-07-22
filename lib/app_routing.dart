@@ -4,6 +4,8 @@ import 'package:ecommerce/screens/home/home_view_binding.dart';
 import 'package:ecommerce/screens/login&register/login_binding.dart';
 import 'package:ecommerce/screens/login&register/login_view.dart';
 import 'package:ecommerce/screens/login&register/register_view.dart';
+import 'package:ecommerce/screens/main/main_view.dart';
+import 'package:ecommerce/screens/main/main_view_binding.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
@@ -29,5 +31,9 @@ class AppRoutes {
         name: AppPaths.home,
         page: (() => const Homeview()),
         binding: HomeViewBinding()),
+    GetPage(
+        name: AppPaths.mainView,
+        page: () => const MainView(),
+        binding: MainViewBinding())
   ];
 }
