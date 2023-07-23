@@ -3,13 +3,17 @@ import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
+import 'package:ecommerce/screens/components/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../models/product.dart';
 import '../components/admin_header.dart';
 
 class PostsScreen extends GetView<AdminController> {
-  const PostsScreen({super.key});
+  PostsScreen({super.key}) {
+    controller.init();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,38 @@ class PostsScreen extends GetView<AdminController> {
                         .copyWith(color: Appcolors.appBlack),
                   ),
                 ],
-              )
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              Obx(() => controller.allProducts.isEmpty
+                  ? Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ],
+                      ),
+                    )
+                  : Expanded(
+                      child: GridView.builder(
+                        itemCount: controller.allProducts.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                childAspectRatio: 0.75,
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20),
+                        itemBuilder: (context, index) {
+                          // ignore: invalid_use_of_protected_member
+                          Product product = controller.allProducts.value[index];
+                          return ProductCard(
+                              productTitle: product.name,
+                              productPrice: "\$${product.price}",
+                              image: product.images[0]);
+                        },
+                      ),
+                    ))
             ],
           ),
         ),

@@ -7,4 +7,7 @@ class AppAssets {
   static const String shopIcon = "assets/Shop Icon.svg";
   static const String userIcon = "assets/User Icon.svg";
   static const String menu = "assets/menu.svg";
+  static const String home = "assets/home-20-svgrepo-com.svg";
+  static const String graph = "assets/graph-increase-svgrepo-com (1).svg";
+  static const String inbox = "assets/inbox-in-svgrepo-com.svg";
 }

@@ -14,13 +14,7 @@ class ErrorHandling {
             duration: const Duration(seconds: 3),
           ),
         );
-        // Get.snackbar(
-        //   "",
-        //   '${body["msg"]}',
-        //   snackPosition: SnackPosition.BOTTOM,
-        //   forwardAnimationCurve: Curves.elasticInOut,
-        //   reverseAnimationCurve: Curves.easeOut,
-        // );
+
         break;
       case 500:
         Get.showSnackbar(
@@ -29,22 +23,9 @@ class ErrorHandling {
             duration: const Duration(seconds: 3),
           ),
         );
-        // Get.snackbar(
-        //   "",
-        //   '${body["error"]}',
-        //   snackPosition: SnackPosition.BOTTOM,
-        //   forwardAnimationCurve: Curves.elasticInOut,
-        //   reverseAnimationCurve: Curves.easeOut,
-        // );
+
         break;
       default:
-        // Get.snackbar(
-        //   "",
-        //   '$body',
-        //   snackPosition: SnackPosition.BOTTOM,
-        //   forwardAnimationCurve: Curves.elasticInOut,
-        //   reverseAnimationCurve: Curves.easeOut,
-        // );
         Get.showSnackbar(
           GetSnackBar(
             message: '$body',

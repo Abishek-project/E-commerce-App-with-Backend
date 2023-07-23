@@ -33,4 +33,8 @@ class AppStrings {
   static const String price = "Price";
   static const String quantity = "Quantity";
   static const String sell = "Sell";
+  static const String enterProductName = "Please enter product name";
+  static const String enterDescription = "Please enter description";
+  static const String enterPrice = "Please enter price";
+  static const String enterquantity = "Please enter quantity";
 }

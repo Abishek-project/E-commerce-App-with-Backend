@@ -33,6 +33,7 @@ class AddProducts extends GetView<AdminController> {
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: SingleChildScrollView(
             child: Form(
+              key: controller.formKey,
               child: Column(
                 children: [
                   SizedBox(
@@ -97,29 +98,53 @@ class AddProducts extends GetView<AdminController> {
                   TextFieldWidget(
                       controller: controller.productNameController,
                       obscureText: false,
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return AppStrings.enterProductName;
+                        }
+                        return null;
+                      },
                       hintText: AppStrings.productName),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   TextFieldWidget(
-                    controller: controller.productNameController,
+                    controller: controller.descriptionController,
                     obscureText: false,
                     hintText: AppStrings.description,
                     maxLines: 5,
+                    validator: (value) {
+                      if (value == "" || value == null) {
+                        return AppStrings.enterDescription;
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   TextFieldWidget(
-                      controller: controller.productNameController,
+                      controller: controller.priceController,
                       obscureText: false,
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return AppStrings.enterPrice;
+                        }
+                        return null;
+                      },
                       hintText: AppStrings.price),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
                   TextFieldWidget(
-                      controller: controller.productNameController,
+                      controller: controller.quantityController,
                       obscureText: false,
+                      validator: (value) {
+                        if (value == "" || value == null) {
+                          return AppStrings.enterquantity;
+                        }
+                        return null;
+                      },
                       hintText: AppStrings.quantity),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
@@ -149,7 +174,19 @@ class AddProducts extends GetView<AdminController> {
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   Button(
-                    onTap: () {},
+                    onTap: () async {
+                      if (controller.formKey.currentState!.validate() &&
+                          controller.productImages.isNotEmpty) {
+                        await controller.addProducts(
+                            controller.productNameController.text,
+                            controller.descriptionController.text,
+                            double.parse(controller.priceController.text),
+                            double.parse(controller.quantityController.text),
+                            controller.category.value,
+                            controller.productImages.value,
+                            context);
+                      }
+                    },
                     child: Center(
                       child: Text(AppStrings.sell,
                           style: AppTypography.bodyMedium2

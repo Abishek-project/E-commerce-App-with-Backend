@@ -23,7 +23,7 @@ authRouter.post("/signup", async (req, res) => {
 
     }
     catch (e) {
-        return res.status(500).json({ error: e.message });
+        res.status(500).json({ error: e.message });
 
     }
 
@@ -45,7 +45,7 @@ authRouter.post("/signin", async (req, res) => {
         return res.json({ token, ...user });
 
     } catch (e) {
-        return res.status(500).json({ error: e.message });
+        res.status(500).json({ error: e.message });
     }
 });
 authRouter.post(
@@ -60,7 +60,7 @@ authRouter.post(
             res.json(true);
         }
         catch (e) {
-            return res.status(500).json({ error: e.message });
+            res.status(500).json({ error: e.message });
         }
     }
 );

@@ -99,7 +99,15 @@ class Homeview extends GetView<HomeViewController> {
                     children: [
                       ...List.generate(
                         4,
-                        (index) => const ProductCard(),
+                        (index) => Container(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: ProductCard(
+                            productTitle: "Wireless Controller for PS4",
+                            productPrice: "\$68.99",
+                            image:
+                                "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                          ),
+                        ),
                       )
                     ],
                   ),

@@ -40,12 +40,7 @@ class LoginAndRegisterationController extends GetxController
       }
     } catch (e) {
       isSignUp.value = false;
-      Get.showSnackbar(
-        GetSnackBar(
-          message: e.toString(),
-          duration: const Duration(seconds: 3),
-        ),
-      );
+      commonWidgetFuncions.showAlertSnackbar(e.toString());
     }
   }
 
@@ -72,12 +67,7 @@ class LoginAndRegisterationController extends GetxController
       }
     } catch (e) {
       isLogin.value = false;
-      Get.showSnackbar(
-        GetSnackBar(
-          message: e.toString(),
-          duration: const Duration(seconds: 3),
-        ),
-      );
+      commonWidgetFuncions.showAlertSnackbar(e.toString());
     }
   }
 }

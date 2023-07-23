@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:ecommerce/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,4 +14,5 @@ class LoginAndRegisterationVariable {
   AuthService authService = AuthService();
   RxBool isSignUp = false.obs;
   RxBool isLogin = false.obs;
+  CommonWidgetFuncions commonWidgetFuncions = CommonWidgetFuncions();
 }

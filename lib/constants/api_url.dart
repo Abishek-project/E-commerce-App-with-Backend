@@ -4,4 +4,6 @@ class ApiUrl {
   static String signUp = "/signup";
   static String signIn = "/signin";
   static String tokenIsValid = "/tokenIsValid";
+  static String addProducts = "/admin/add-product";
+  static String getAdminProducts = "/admin/get-product";
 }
