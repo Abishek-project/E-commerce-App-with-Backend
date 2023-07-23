@@ -7,9 +7,15 @@ class ProductCard extends StatelessWidget {
   String productTitle;
   String productPrice;
   String image;
+  String svgIcon;
+  Color? svgColor;
+  void Function() trailingOnTop;
   ProductCard(
       {Key? key,
       required this.productTitle,
+      required this.svgIcon,
+      required this.trailingOnTop,
+      this.svgColor,
       required this.productPrice,
       required this.image})
       : super(key: key);
@@ -47,14 +53,21 @@ class ProductCard extends StatelessWidget {
                     .copyWith(color: Appcolors.appMainColor)),
             Container(
               padding: const EdgeInsets.all(8),
-              height: 28,
-              width: 28,
+              height: 30,
+              width: 30,
               decoration: BoxDecoration(
                 color: Appcolors.lightGray13,
                 shape: BoxShape.circle,
               ),
-              child: SvgPicture.asset("assets/Heart Icon_2.svg",
-                  color: const Color(0xFFFF4848)),
+              child: InkWell(
+                onTap: trailingOnTop,
+                child: SvgPicture.asset(
+                  svgIcon,
+                  height: 24,
+                  width: 24,
+                  color: svgColor,
+                ),
+              ),
             )
           ],
         )

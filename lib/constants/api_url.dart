@@ -6,4 +6,6 @@ class ApiUrl {
   static String tokenIsValid = "/tokenIsValid";
   static String addProducts = "/admin/add-product";
   static String getAdminProducts = "/admin/get-product";
+  static String deleteProduct = "/admin/delete-product";
+  static String product = "/product";
 }

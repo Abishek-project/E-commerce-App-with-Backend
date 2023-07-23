@@ -1,31 +1,29 @@
-import 'package:ecommerce/admin/screens/admin_controller.dart';
-import 'package:ecommerce/constants/app_assets.dart';
-import 'package:ecommerce/constants/app_colors.dart';
-import 'package:ecommerce/constants/app_path.dart';
-import 'package:ecommerce/constants/app_strings.dart';
-import 'package:ecommerce/constants/app_textStyle.dart';
-import 'package:ecommerce/screens/components/product_card.dart';
+import 'package:ecommerce/screens/category/category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../constants/app_assets.dart';
+import '../../constants/app_colors.dart';
+import '../../constants/app_textStyle.dart';
 import '../../models/product.dart';
-import '../components/admin_header.dart';
+import '../components/product_card.dart';
 
-class PostsScreen extends GetView<AdminController> {
-  PostsScreen({super.key}) {
+class CategoryView extends GetView<CategoryController> {
+  CategoryView({super.key}) {
     controller.init();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        tooltip: AppStrings.addProducts,
-        onPressed: () {
-          Get.toNamed(AppPaths.addProducts);
-        },
+      appBar: AppBar(
         backgroundColor: Appcolors.appMainColor,
-        child: const Icon(Icons.add),
+        elevation: 0,
+        title: Text(
+          controller.category.value,
+          style: AppTypography.bodyMedium2,
+        ),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Padding(
@@ -33,20 +31,19 @@ class PostsScreen extends GetView<AdminController> {
           child: Column(
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              const AdminAppBar(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    AppStrings.helloAdmin,
-                    style: AppTypography.appTitle2
+                    "keep shoping for ${controller.category.value}!",
+                    style: AppTypography.appSubTitle4
                         .copyWith(color: Appcolors.appBlack),
                   ),
                 ],
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              Obx(() => controller.allProducts.isEmpty
+              Obx(() => controller.categoryProducts.isEmpty
                   ? Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +56,7 @@ class PostsScreen extends GetView<AdminController> {
                     )
                   : Expanded(
                       child: GridView.builder(
-                        itemCount: controller.allProducts.length,
+                        itemCount: controller.categoryProducts.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
@@ -68,14 +65,12 @@ class PostsScreen extends GetView<AdminController> {
                                 mainAxisSpacing: 20),
                         itemBuilder: (context, index) {
                           // ignore: invalid_use_of_protected_member
-                          Product product = controller.allProducts.value[index];
+                          Product product =
+                              controller.categoryProducts.value[index];
                           return ProductCard(
-                              trailingOnTop: (() async {
-                                await controller.deleteProducts(
-                                    product.id, index);
-                              }),
-                              svgIcon: AppAssets.trashIcon,
-                              svgColor: Appcolors.brandRed500,
+                              trailingOnTop: () {},
+                              svgIcon: AppAssets.heartIcon,
+                              // svgColor: Appcolors.brandRed500,
                               productTitle: product.name,
                               productPrice: "\$${product.price}",
                               image: product.images[0]);

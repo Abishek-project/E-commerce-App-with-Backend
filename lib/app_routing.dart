@@ -2,6 +2,8 @@ import 'package:ecommerce/admin/screens/add_product.dart';
 import 'package:ecommerce/admin/screens/admin_binding.dart';
 import 'package:ecommerce/admin/screens/admin_screen.dart';
 import 'package:ecommerce/constants/app_path.dart';
+import 'package:ecommerce/screens/category/category_binding.dart';
+import 'package:ecommerce/screens/category/category_view.dart';
 import 'package:ecommerce/screens/home/home_view.dart';
 import 'package:ecommerce/screens/home/home_view_binding.dart';
 import 'package:ecommerce/screens/login&register/login_binding.dart';
@@ -46,5 +48,9 @@ class AppRoutes {
         name: AppPaths.addProducts,
         page: () => const AddProducts(),
         binding: AdminBinding()),
+    GetPage(
+        name: AppPaths.category,
+        page: () => CategoryView(),
+        binding: CategoryBinding()),
   ];
 }

@@ -68,4 +68,10 @@ class AdminController extends GetxController with AdminVariables {
       ErrorHandling.errorHandling(response);
     }
   }
+
+  deleteProducts(id, index) async {
+    await adminService.deleteProducts(id);
+    allProducts.removeAt(index);
+    allProducts.refresh();
+  }
 }

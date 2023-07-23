@@ -1,5 +1,6 @@
 import 'package:ecommerce/constants/app_assets.dart';
 import 'package:ecommerce/constants/app_colors.dart';
+import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/screens/home/components/category_card.dart';
@@ -63,18 +64,24 @@ class Homeview extends GetView<HomeViewController> {
                     children: [
                       ...List.generate(
                           controller.allCategories.length,
-                          (index) => CategoryCard(
-                                text: controller.allCategories[index]["name"],
-                                icon: controller.allCategories[index]["icon"],
-                                color: index == 0
-                                    ? Appcolors.appMainColor
-                                    : Appcolors.appWhite,
-                                textColor: index == 0
-                                    ? Appcolors.appWhite
-                                    : Appcolors.appBlackDark,
-                                border: index == 0
-                                    ? null
-                                    : Border.all(color: Appcolors.lightGray11),
+                          (index) => InkWell(
+                                onTap: () => Get.toNamed(AppPaths.category,
+                                    arguments: controller.allCategories[index]
+                                        ["name"]),
+                                child: CategoryCard(
+                                  text: controller.allCategories[index]["name"],
+                                  icon: controller.allCategories[index]["icon"],
+                                  color: index == 0
+                                      ? Appcolors.appMainColor
+                                      : Appcolors.appWhite,
+                                  textColor: index == 0
+                                      ? Appcolors.appWhite
+                                      : Appcolors.appBlackDark,
+                                  border: index == 0
+                                      ? null
+                                      : Border.all(
+                                          color: Appcolors.lightGray11),
+                                ),
                               ))
                     ],
                   ),
@@ -102,6 +109,8 @@ class Homeview extends GetView<HomeViewController> {
                         (index) => Container(
                           padding: const EdgeInsets.only(right: 10),
                           child: ProductCard(
+                            trailingOnTop: () {},
+                            svgIcon: AppAssets.heartIcon,
                             productTitle: "Wireless Controller for PS4",
                             productPrice: "\$68.99",
                             image:

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:cloudinary/cloudinary.dart';
 import 'package:ecommerce/controller/global_controller.dart';
@@ -11,6 +12,7 @@ class AdminService {
   String url = ApiUrl.baseUrl;
   String addProduct = ApiUrl.addProducts;
   String getAllProduct = ApiUrl.getAdminProducts;
+  String deleteProduct = ApiUrl.deleteProduct;
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
     "auth-token": GlobalController.appUser!.token,
@@ -67,6 +69,19 @@ class AdminService {
           await http.post(Uri.parse("$url$getAllProduct"), headers: headers);
 
       return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  deleteProducts(id) async {
+    var body = {"id": id};
+    try {
+      var response = await http.post(Uri.parse("$url$deleteProduct"),
+          body: jsonEncode(body), headers: headers);
+      if (response.statusCode != 200) {
+        ErrorHandling.errorHandling(response);
+      }
     } catch (e) {
       CommonWidgetFuncions().showAlertSnackbar(e.toString());
     }
