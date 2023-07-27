@@ -32,7 +32,11 @@ class Homeview extends GetView<HomeViewController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SearchWidget(),
+                    SearchWidget(
+                      controller: controller.searchController,
+                      onSubmitted: (val) =>
+                          controller.navigateToSearchView(val),
+                    ),
                     IconBtnWithCounter(
                       svgSrc: AppAssets.cart,
                       press: (() {}),

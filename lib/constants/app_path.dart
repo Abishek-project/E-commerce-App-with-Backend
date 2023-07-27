@@ -7,4 +7,5 @@ class AppPaths {
   static const adminView = "/adminView";
   static const addProducts = "/addProducts";
   static const category = "/category";
+  static const search = "/search";
 }

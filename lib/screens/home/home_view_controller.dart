@@ -1,3 +1,4 @@
+import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/shared_prefrences.dart';
 import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/home/home_view_variables.dart';
@@ -18,5 +19,10 @@ class HomeViewController extends GetxController with HomeViewVariable {
     print(token);
     var user = preferences.getString(SharedPreferenceKey.appUser);
     print(user);
+  }
+
+  navigateToSearchView(String searchText) {
+    Get.toNamed(AppPaths.search, arguments: searchText);
+    searchController.clear();
   }
 }

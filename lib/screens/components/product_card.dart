@@ -40,17 +40,17 @@ class ProductCard extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           productTitle,
-          // "Wireless Controller for PS4",
           style: AppTypography.appSubTitle1,
           maxLines: 2,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(productPrice,
-                // "\$68.99",
-                style: AppTypography.bodyMedium2
-                    .copyWith(color: Appcolors.appMainColor)),
+            Text(
+              productPrice,
+              style: AppTypography.bodyMedium2
+                  .copyWith(color: Appcolors.appMainColor),
+            ),
             Container(
               padding: const EdgeInsets.all(8),
               height: 30,

@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../constants/app_colors.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({
+  void Function(String)? onSubmitted;
+  TextEditingController? controller;
+  SearchWidget({
+    this.onSubmitted,
+    this.controller,
     Key? key,
   }) : super(key: key);
 
@@ -16,6 +20,8 @@ class SearchWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextField(
+        controller: controller,
+        onSubmitted: onSubmitted,
         onChanged: (value) {},
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 15),

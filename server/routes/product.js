@@ -11,4 +11,14 @@ productRouter.get("/product", auth, async (req, res) => {
         res.status(500).json({ error: e.message });
     }
 })
+
+productRouter.get("/product/search/:name", auth, async (req, res) => {
+    try {
+        console.log(req.params.name);
+        const product = await Product.find({ name: { $regex: req.params.name, $options: "i" } });
+        res.send(product);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+})
 module.exports = productRouter;

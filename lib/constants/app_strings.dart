@@ -37,4 +37,7 @@ class AppStrings {
   static const String enterDescription = "Please enter description";
   static const String enterPrice = "Please enter price";
   static const String enterquantity = "Please enter quantity";
+  static const String eligibleShipping = "Eligible for free shipping";
+  static const String inStock = "In Stock";
+  static const String noItemsFound = "No Items Found";
 }
