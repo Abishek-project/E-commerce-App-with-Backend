@@ -21,6 +21,7 @@ class CategoryController extends GetxController with CategoryVariables {
         categoryProducts.value.add(Product.fromMap(element));
       }
       categoryProducts.refresh();
+
       return categoryProducts;
     } else if (response.statusCode != 200) {
       ErrorHandling.errorHandling(response);

@@ -13,7 +13,7 @@ class MainView extends GetView<MainViewController> {
     return Scaffold(
       body: IndexedStack(
         index: controller.selectedIndex.value,
-        children: const [
+        children: [
           Homeview(),
         ],
       ),

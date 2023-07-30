@@ -7,6 +7,8 @@ import '../screens/components/common_widget_functions.dart';
 class HomeService {
   String url = ApiUrl.baseUrl;
   String categoryProduct = ApiUrl.product;
+  String popularProduct = ApiUrl.popularProduct;
+
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
     "auth-token": GlobalController.appUser!.token,
@@ -16,6 +18,16 @@ class HomeService {
       http.Response response = await http.get(
           Uri.parse("$url$categoryProduct?category=$category"),
           headers: headers);
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  getPopularProducts() async {
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$url$popularProduct"), headers: headers);
       return response;
     } catch (e) {
       CommonWidgetFuncions().showAlertSnackbar(e.toString());

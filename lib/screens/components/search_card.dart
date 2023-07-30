@@ -44,6 +44,8 @@ class SearchCard extends StatelessWidget {
                   StarRating(
                     itemsize: 16,
                     starCount: 4,
+                    initialRating: 0,
+                    onRatingUpdate: (double) {},
                   ),
                   const SizedBox(
                     height: 2,

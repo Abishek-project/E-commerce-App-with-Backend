@@ -30,7 +30,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () => Get.back(),
+                        onTap: () {
+                          Get.back();
+                        },
                         child: SvgPicture.asset(
                           AppAssets.backArrow,
                           height: 25,
@@ -175,10 +177,12 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                                     const SizedBox(
                                       width: 4,
                                     ),
-                                    Text("4.5",
+                                    Obx(() => Text(
+                                        controller.avgRating.value
+                                            .toStringAsFixed(1),
                                         style: AppTypography.appSubTitlebold
                                             .copyWith(
-                                                color: Appcolors.appBlack))
+                                                color: Appcolors.appBlack)))
                                   ],
                                 ),
                               ],
@@ -190,7 +194,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                                   style: AppTypography.appSubTitle3),
                             ),
                             Text(
-                              "The iPhone 11 is a smartphone developed by Apple Inc. and released in September 2019. It is part of the 13th generation of iPhones. The device features a 6.1-inch Liquid Retina HD display with True Tone technology, providing vibrant and accurate colors. The iPhone 11 is powered by Apple's A13 Bionic chip, which delivers fast and efficient performance for various tasks and applications.",
+                              controller.product.value!.description,
                               style: AppTypography.appSubTitle7
                                   .copyWith(color: Appcolors.appBlack),
                               textAlign: TextAlign.justify,
@@ -218,7 +222,16 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             Text(AppStrings.rateProduct,
                                 style: AppTypography.bodyMedium
                                     .copyWith(color: Appcolors.appBlack)),
-                            StarRating(starCount: 5, itemsize: 20),
+                            Obx(() => StarRating(
+                                  starCount: 5,
+                                  itemsize: 20,
+                                  initialRating:
+                                      controller.myRating.value.toDouble(),
+                                  onRatingUpdate: (val) {
+                                    controller.rateTheProducts(
+                                        controller.product.value, val);
+                                  },
+                                )),
                             const SizedBox(
                               height: 30,
                             ),

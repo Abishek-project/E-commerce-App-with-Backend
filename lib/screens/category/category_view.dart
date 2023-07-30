@@ -31,7 +31,7 @@ class CategoryView extends GetView<CategoryController> {
           Padding(
             padding: const EdgeInsets.only(right: 8, top: 5),
             child: SvgPicture.asset(
-              "assets/bag-svgrepo-com.svg",
+              AppAssets.shopBag,
               height: 22,
               width: 22,
               color: Appcolors.appWhite,
@@ -114,31 +114,36 @@ class CategoryView extends GetView<CategoryController> {
                       child: Text('Error: ${snapshot.error}'),
                     );
                   } else {
-                    RxList<Product> products =
-                        RxList.from(snapshot.data as RxList);
+                    // RxList<Product> products =
+                    //     RxList.from(snapshot.data as RxList);
                     // If data has been fetched successfully, show the list
-                    return Expanded(
-                      child: GridView.builder(
-                        itemCount: products.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 0.75,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
-                        itemBuilder: (context, index) {
-                          Product product = products[index];
-                          return ProductCard(
-                              trailingOnTop: () {},
-                              onTap: () => Get.toNamed(AppPaths.productDetails,
-                                  arguments: product),
-                              svgIcon: AppAssets.heartIcon,
-                              productTitle: product.name,
-                              productPrice: "\$${product.price}",
-                              image: product.images[0]);
-                        },
-                      ),
-                    );
+                    return Obx(() => Expanded(
+                          child: GridView.builder(
+                            itemCount: controller.categoryProducts.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.75,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 20),
+                            itemBuilder: (context, index) {
+                              Product product =
+                                  controller.categoryProducts[index];
+                              return ProductCard(
+                                  trailingOnTop: () {},
+                                  onTap: () {
+                                    Get.toNamed(AppPaths.productDetails,
+                                            arguments: product)!
+                                        .then((value) => controller.getProducts(
+                                            controller.category.value));
+                                  },
+                                  svgIcon: AppAssets.heartIcon,
+                                  productTitle: product.name,
+                                  productPrice: "\$${product.price}",
+                                  image: product.images[0]);
+                            },
+                          ),
+                        ));
                   }
                 },
               )

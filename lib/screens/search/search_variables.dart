@@ -1,4 +1,4 @@
-import 'package:ecommerce/services/serach_service.dart';
+import 'package:ecommerce/services/search_service.dart';
 import 'package:get/get.dart';
 
 class SearchViewVariables {

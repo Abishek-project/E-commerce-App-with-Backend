@@ -9,4 +9,6 @@ class ApiUrl {
   static String deleteProduct = "/admin/delete-product";
   static String product = "/product";
   static String searchProduct = "/product/search/";
+  static String rateProduct = "/rate-product";
+  static String popularProduct = "/popular-products";
 }

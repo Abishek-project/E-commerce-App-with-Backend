@@ -1,11 +1,40 @@
+import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/productDetails/product_details_variables.dart';
 import 'package:get/get.dart';
 
+import '../components/error_handling.dart';
+
 class ProductDetailsController extends GetxController
     with ProductDetailsVariables {
-  init() {
+  init() async {
     var data = Get.arguments;
     product.value = data;
-    print(product);
+    print(product.value);
+    await ratingProducts();
+  }
+
+  ratingProducts() async {
+    if (product.value!.rating != null || product.value!.rating!.isNotEmpty) {
+      double totalRating = 0;
+      for (var i = 0; i < product.value!.rating!.length; i++) {
+        totalRating += product.value!.rating![i].rating;
+
+        if (product.value!.rating![i].userId == GlobalController.appUser!.id) {
+          myRating.value = product.value!.rating![i].rating;
+        }
+      }
+      if (totalRating != 0) {
+        var length = product.value!.rating!.length;
+
+        avgRating.value = totalRating / length;
+      }
+    }
+  }
+
+  rateTheProducts(product, rating) async {
+    var response = await productService.rateProducts(product, rating);
+    if (response.statusCode != 200) {
+      ErrorHandling.errorHandling(response);
+    }
   }
 }

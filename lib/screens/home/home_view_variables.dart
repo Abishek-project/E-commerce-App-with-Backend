@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeViewVariable {
   final TextEditingController searchController = TextEditingController();
@@ -9,4 +10,5 @@ class HomeViewVariable {
     {"name": "Appliances", "icon": "assets/washing-machine.png"},
     {"name": "Furniture", "icon": "assets/sofa.png"},
   ];
+  RxList popularProducts = [].obs;
 }

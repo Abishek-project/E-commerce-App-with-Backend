@@ -38,7 +38,7 @@ class AppRoutes {
         binding: LoginAndRegisterationBinding()),
     GetPage(
         name: AppPaths.home,
-        page: (() => const Homeview()),
+        page: (() => Homeview()),
         binding: HomeViewBinding()),
     GetPage(
         name: AppPaths.mainView,
