@@ -11,6 +11,8 @@ import 'package:ecommerce/screens/login&register/login_view.dart';
 import 'package:ecommerce/screens/login&register/register_view.dart';
 import 'package:ecommerce/screens/main/main_view.dart';
 import 'package:ecommerce/screens/main/main_view_binding.dart';
+import 'package:ecommerce/screens/productDetails/product_details_binding.dart';
+import 'package:ecommerce/screens/productDetails/product_details_view.dart';
 import 'package:ecommerce/screens/search/search_binding.dart';
 import 'package:ecommerce/screens/search/search_view.dart';
 import 'package:get/get.dart';
@@ -58,5 +60,9 @@ class AppRoutes {
         name: AppPaths.search,
         page: () => SearchView(),
         binding: SearchViewBinding()),
+    GetPage(
+        name: AppPaths.productDetails,
+        page: () => ProductDetailsView(),
+        binding: ProductDetailsBindings()),
   ];
 }

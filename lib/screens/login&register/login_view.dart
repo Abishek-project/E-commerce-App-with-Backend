@@ -172,7 +172,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
             return null;
           },
           controller: controller.loginPassword,
-          obscureText: false,
+          obscureText: true,
           hintText: AppStrings.password,
           prefixIcon: Icon(
             Icons.lock,

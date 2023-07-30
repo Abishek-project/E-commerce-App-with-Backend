@@ -13,15 +13,12 @@ class EmptySearchCard extends StatelessWidget {
       highlightColor: Colors.grey[100]!,
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 25),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.grey[300]!,
-                  borderRadius: BorderRadius.circular(8)),
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.width * 0.35,
-            ),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.grey[300]!,
+                borderRadius: BorderRadius.circular(8)),
+            height: MediaQuery.of(context).size.height * 0.25,
+            width: MediaQuery.of(context).size.width * 0.35,
           ),
           Expanded(
             child: Padding(

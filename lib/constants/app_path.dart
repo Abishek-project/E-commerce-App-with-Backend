@@ -8,4 +8,5 @@ class AppPaths {
   static const addProducts = "/addProducts";
   static const category = "/category";
   static const search = "/search";
+  static const productDetails = "/details";
 }

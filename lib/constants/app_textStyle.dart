@@ -22,6 +22,8 @@ class AppTypography {
       GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700);
   static TextStyle appSubTitle6 =
       GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w300);
+  static TextStyle appSubTitle7 =
+      GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w400);
   static TextStyle appSubTitle3 =
       GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w600);
   static TextStyle appHelpText =

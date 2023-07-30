@@ -35,7 +35,7 @@ class Homeview extends GetView<HomeViewController> {
                     SearchWidget(
                       controller: controller.searchController,
                       onSubmitted: (val) =>
-                          controller.navigateToSearchView(val),
+                          controller.navigateToSearchView(val.trim()),
                     ),
                     IconBtnWithCounter(
                       svgSrc: AppAssets.cart,

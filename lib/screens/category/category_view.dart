@@ -1,6 +1,8 @@
+import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/screens/category/category_controller.dart';
 import 'package:ecommerce/screens/components/empty_product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../constants/app_assets.dart';
@@ -25,6 +27,17 @@ class CategoryView extends GetView<CategoryController> {
           style: AppTypography.bodyMedium2,
         ),
         centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8, top: 5),
+            child: SvgPicture.asset(
+              "assets/bag-svgrepo-com.svg",
+              height: 22,
+              width: 22,
+              color: Appcolors.appWhite,
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -37,7 +50,7 @@ class CategoryView extends GetView<CategoryController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "keep shoping for ${controller.category.value}!",
+                    "keep shopping for ${controller.category.value}!",
                     style: AppTypography.appSubTitle4
                         .copyWith(color: Appcolors.appBlack),
                   ),
@@ -117,6 +130,8 @@ class CategoryView extends GetView<CategoryController> {
                           Product product = products[index];
                           return ProductCard(
                               trailingOnTop: () {},
+                              onTap: () => Get.toNamed(AppPaths.productDetails,
+                                  arguments: product),
                               svgIcon: AppAssets.heartIcon,
                               productTitle: product.name,
                               productPrice: "\$${product.price}",

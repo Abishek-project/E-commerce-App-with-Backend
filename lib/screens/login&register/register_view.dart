@@ -146,7 +146,7 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             return null;
           },
           controller: controller.registrationPassword,
-          obscureText: false,
+          obscureText: true,
           hintText: AppStrings.password,
           prefixIcon: Icon(
             Icons.lock,

@@ -36,8 +36,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               color: currentIndex == 0
                   ? Appcolors.appMainColor
                   : Appcolors.darkGray,
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
             ),
             label: ""),
         BottomNavigationBarItem(
@@ -45,8 +45,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
             bottomIconTwo!,
             color:
                 currentIndex == 1 ? Appcolors.appMainColor : Appcolors.darkGray,
-            height: 25,
-            width: 25,
+            height: 20,
+            width: 20,
           ),
           label: "",
         ),
@@ -56,8 +56,8 @@ class BottomNavigationBarWidget extends StatelessWidget {
               color: currentIndex == 2
                   ? Appcolors.appMainColor
                   : Appcolors.darkGray,
-              height: 25,
-              width: 25,
+              height: 20,
+              width: 20,
             ),
             label: ""),
       ],

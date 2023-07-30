@@ -18,11 +18,9 @@ class SerachViewController extends GetxController with SearchViewVariables {
     searchProducts.value = [];
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-
       for (var element in body) {
         searchProducts.value.add(Product.fromMap(element));
       }
-
       searchProducts.refresh();
       return searchProducts;
     } else if (response.statusCode != 200) {

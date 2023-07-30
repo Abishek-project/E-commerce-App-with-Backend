@@ -10,11 +10,13 @@ class ProductCard extends StatelessWidget {
   String svgIcon;
   Color? svgColor;
   void Function() trailingOnTop;
+  void Function()? onTap;
   ProductCard(
       {Key? key,
       required this.productTitle,
       required this.svgIcon,
       required this.trailingOnTop,
+      this.onTap,
       this.svgColor,
       required this.productPrice,
       required this.image})
@@ -25,16 +27,19 @@ class ProductCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.2,
-          width: MediaQuery.of(context).size.width * 0.45,
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Appcolors.lightGray13,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Image.network(
-            image,
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.2,
+            width: MediaQuery.of(context).size.width * 0.45,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Appcolors.lightGray13,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Image.network(
+              image,
+            ),
           ),
         ),
         const SizedBox(height: 10),

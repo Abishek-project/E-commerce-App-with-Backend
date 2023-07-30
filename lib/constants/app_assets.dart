@@ -12,4 +12,7 @@ class AppAssets {
   static const String inbox = "assets/inbox-in-svgrepo-com.svg";
   static const String trashIcon = "assets/delete-svgrepo-com.svg";
   static const String heartIcon = "assets/Heart Icon_2.svg";
+  static const String backArrow = "assets/backArrow.svg";
+  static const String shopBag = "assets/bag-svgrepo-com.svg";
+  static const String filterIcon = "assets/filter-edit-svgrepo-com.svg";
 }

@@ -40,4 +40,9 @@ class AppStrings {
   static const String eligibleShipping = "Eligible for free shipping";
   static const String inStock = "In Stock";
   static const String noItemsFound = "No Items Found";
+  static const String addToCart = "Add to cart";
+  static const String findYourPerfectProduct = "Find Your Perfect Product!";
+
+  static const String rateProduct = "Rate this product";
+  static const String discover = "Discover";
 }

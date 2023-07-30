@@ -22,7 +22,9 @@ class HomeViewController extends GetxController with HomeViewVariable {
   }
 
   navigateToSearchView(String searchText) {
-    Get.toNamed(AppPaths.search, arguments: searchText);
-    searchController.clear();
+    if (searchText != "") {
+      Get.toNamed(AppPaths.search, arguments: searchText);
+      searchController.clear();
+    }
   }
 }
