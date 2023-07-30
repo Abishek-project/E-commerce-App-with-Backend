@@ -2,25 +2,27 @@ import 'dart:convert';
 
 import '../constants/api_url.dart';
 import '../controller/global_controller.dart';
+import '../screens/components/common_widget_functions.dart';
 import 'package:http/http.dart' as http;
 
-import '../screens/components/common_widget_functions.dart';
-
-class ProductService {
+class UserServices {
   String url = ApiUrl.baseUrl;
-  String rateProduct = ApiUrl.rateProduct;
+  String addToCartProduct = ApiUrl.addToCart;
+
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
     "auth-token": GlobalController.appUser!.token,
   };
-
-  rateProducts(product, double rating) async {
+  addToCart(product) async {
     try {
-      var body = {"id": product.id, "rating": rating};
       http.Response response = await http.post(
-        Uri.parse("$url$rateProduct"),
+        Uri.parse("$url$addToCartProduct"),
         headers: headers,
-        body: jsonEncode(body),
+        body: jsonEncode(
+          {
+            "id": product.id,
+          },
+        ),
       );
       return response;
     } catch (e) {

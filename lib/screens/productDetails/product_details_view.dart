@@ -6,6 +6,7 @@ import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/screens/components/custom_button.dart';
 import 'package:ecommerce/screens/components/rating.dart';
 import 'package:ecommerce/screens/productDetails/product_details_controller.dart';
+import 'package:ecommerce/services/user_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -236,7 +237,10 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                               height: 30,
                             ),
                             Button(
-                                onTap: () {},
+                                onTap: () async {
+                                  await controller.productAddToCart(
+                                      controller.product.value);
+                                },
                                 child: Center(
                                     child: Text(AppStrings.addToCart,
                                         style: AppTypography.appSubTitle3

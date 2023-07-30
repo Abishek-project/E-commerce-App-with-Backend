@@ -1,4 +1,5 @@
 import 'package:ecommerce/services/product_services.dart';
+import 'package:ecommerce/services/user_services.dart';
 import 'package:get/get.dart';
 
 import '../../models/product.dart';
@@ -9,4 +10,5 @@ class ProductDetailsVariables {
   ProductService productService = ProductService();
   RxDouble avgRating = 0.0.obs;
   RxDouble myRating = 0.0.obs;
+  UserServices userServices = UserServices();
 }

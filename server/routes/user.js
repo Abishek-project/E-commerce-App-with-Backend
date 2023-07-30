@@ -1,6 +1,7 @@
 const express = require("express");
 const auth = require("../middleware/auth_middleware");
-const Product = require("../models/product");
+const { Product } = require("../models/product");
+const User = require("../models/user");
 const userRouter = express.Router();
 
 userRouter.get("/popular-products", auth, async (req, res) => {
@@ -34,4 +35,62 @@ userRouter.get("/popular-products", auth, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 })
+
+userRouter.post("/add-to-cart", auth, async (req, res) => {
+    try {
+        const { id } = req.body;
+        let product = await Product.findById(id);
+        let user = await User.findById(req.user);
+        if (user.cart.length == 0) {
+            user.cart.push(
+                {
+                    product,
+                    quantity: 1
+                }
+            )
+        }
+        else {
+            let hasProduct = false;
+            for (let i = 0; i < user.cart.length; i++) {
+                if (user.cart[i].product._id.equals(product._id)) {
+                    hasProduct = true;
+                }
+
+            }
+
+            if (hasProduct) {
+                let hasCartProduct = false;
+                for (const cartItem of user.cart) {
+                    if (cartItem.product._id.equals(product._id)) {
+                        hasCartProduct = true;
+                        cartItem.quantity += 1;
+                        break;
+                    }
+                }
+
+                if (!hasCartProduct) {
+                    user.cart.push({
+                        product,
+                        quantity: 1
+                    });
+                }
+
+
+            }
+            else {
+                user.cart.push(
+                    {
+                        product,
+                        quantity: 1
+                    }
+                )
+            }
+        }
+        user = await user.save();
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
 module.exports = userRouter;
