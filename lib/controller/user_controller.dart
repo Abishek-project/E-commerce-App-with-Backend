@@ -17,6 +17,7 @@ class UserController extends GetxController {
   }
 
   getUserData() async {
+    print(GlobalController.appUser);
     String url = ApiUrl.baseUrl;
 
     String tokenIsValid = ApiUrl.tokenIsValid;
@@ -36,17 +37,22 @@ class UserController extends GetxController {
         );
 
         var tokenResponse = jsonDecode(response.body);
+        print(tokenResponse);
         if (tokenResponse == true) {
           http.Response userResponse = await http.get(
             headers: headers,
             Uri.parse("$url/"),
           );
-
+          var a = userResponse.body;
+          print(a);
+          var b = jsonDecode(userResponse.body);
+          print(b);
           user = User.fromJson(userResponse.body);
           // update();
 
           await pref.setString(SharedPreferenceKey.appUser, userResponse.body);
-          GlobalController.appUser = User.fromJson(userResponse.body);
+          GlobalController.appUser.value = User.fromJson(userResponse.body);
+          print(GlobalController.appUser);
         } else if (tokenResponse == false) {
           // return null;
         }

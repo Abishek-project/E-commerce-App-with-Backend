@@ -11,7 +11,7 @@ class HomeService {
 
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
-    "auth-token": GlobalController.appUser!.token,
+    "auth-token": GlobalController.appUser.value!.token,
   };
   getProductsByCategory(String category) async {
     try {

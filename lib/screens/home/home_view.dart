@@ -3,6 +3,7 @@ import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
+import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/components/empty_product_card.dart';
 import 'package:ecommerce/screens/home/components/category_card.dart';
@@ -41,10 +42,12 @@ class Homeview extends GetView<HomeViewController> {
                       onSubmitted: (val) =>
                           controller.navigateToSearchView(val.trim()),
                     ),
-                    IconBtnWithCounter(
-                      svgSrc: AppAssets.cart,
-                      press: (() {}),
-                    ),
+                    Obx(() => IconBtnWithCounter(
+                          svgSrc: AppAssets.cart,
+                          press: (() {}),
+                          numOfitem:
+                              GlobalController.appUser.value!.cart.length,
+                        )),
                     IconBtnWithCounter(
                       svgSrc: AppAssets.bell,
                       press: (() {}),

@@ -35,7 +35,7 @@ class LoginAndRegisterationController extends GetxController
         isSignUp.value = false;
         SharedPreferences pref = await SharedPreferences.getInstance();
         await pref.setString(SharedPreferenceKey.appUser, response.body);
-        GlobalController.appUser = User.fromJson(response.body);
+        GlobalController.appUser.value = User.fromJson(response.body);
         Get.offNamed(AppPaths.login);
       }
     } catch (e) {
@@ -60,10 +60,10 @@ class LoginAndRegisterationController extends GetxController
         await pref.setString(SharedPreferenceKey.token, resBody["token"]);
         await pref.setString(SharedPreferenceKey.appUser, response.body);
 
-        GlobalController.appUser = User.fromJson(response.body);
-        GlobalController.appUser!.type == "admin"
+        GlobalController.appUser.value = User.fromJson(response.body);
+        GlobalController.appUser.value!.type == "admin"
             ? Get.offAllNamed(AppPaths.adminView)
-            : Get.offNamed(AppPaths.home);
+            : Get.offNamed(AppPaths.mainView);
       }
     } catch (e) {
       isLogin.value = false;

@@ -3,6 +3,7 @@ import 'package:ecommerce/constants/app_assets.dart';
 import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
+import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/components/custom_button.dart';
 import 'package:ecommerce/screens/components/rating.dart';
 import 'package:ecommerce/screens/productDetails/product_details_controller.dart';
@@ -58,16 +59,18 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                                 border:
                                     Border.all(width: 1.5, color: Colors.white),
                               ),
-                              child: const Center(
-                                child: Text(
-                                  "4",
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    height: 1,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  ),
-                                ),
+                              child: Center(
+                                child: Obx(() => Text(
+                                      GlobalController
+                                          .appUser.value!.cart.length
+                                          .toString(),
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        height: 1,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                      ),
+                                    )),
                               ),
                             ),
                           )

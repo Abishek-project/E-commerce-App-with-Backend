@@ -11,7 +11,7 @@ class ProductService {
   String rateProduct = ApiUrl.rateProduct;
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
-    "auth-token": GlobalController.appUser!.token,
+    "auth-token": GlobalController.appUser.value!.token,
   };
 
   rateProducts(product, double rating) async {

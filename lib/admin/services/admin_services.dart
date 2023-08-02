@@ -15,7 +15,7 @@ class AdminService {
   String deleteProduct = ApiUrl.deleteProduct;
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
-    "auth-token": GlobalController.appUser!.token,
+    "auth-token": GlobalController.appUser.value!.token,
   };
   Future sellProducts(String name, String description, double price,
       double quantity, String category, List<File> images, context) async {

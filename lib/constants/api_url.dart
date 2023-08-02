@@ -12,4 +12,5 @@ class ApiUrl {
   static String rateProduct = "/rate-product";
   static String popularProduct = "/popular-products";
   static String addToCart = "/add-to-cart";
+  static String removeFromCart = "/remove-from-cart/";
 }

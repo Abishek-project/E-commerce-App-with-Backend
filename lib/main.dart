@@ -31,23 +31,23 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   // Determine the initial route and binding based on user authentication status
   static String determineInitialRoute() {
-    return GlobalController.appUser != null &&
-            GlobalController.appUser!.token != "" &&
-            GlobalController.appUser!.type == "admin"
+    return GlobalController.appUser.value != null &&
+            GlobalController.appUser.value!.token != "" &&
+            GlobalController.appUser.value!.type == "admin"
         ? AppPaths.adminView
-        : GlobalController.appUser != null &&
-                GlobalController.appUser!.token != ""
+        : GlobalController.appUser.value != null &&
+                GlobalController.appUser.value!.token != ""
             ? AppPaths.mainView
             : AppPaths.login;
   }
 
   static determineInitialBinding() {
-    return GlobalController.appUser != null &&
-            GlobalController.appUser!.token != "" &&
-            GlobalController.appUser!.type == "admin"
+    return GlobalController.appUser.value != null &&
+            GlobalController.appUser.value!.token != "" &&
+            GlobalController.appUser.value!.type == "admin"
         ? AdminBinding()
-        : GlobalController.appUser != null &&
-                GlobalController.appUser!.token != ""
+        : GlobalController.appUser.value != null &&
+                GlobalController.appUser.value!.token != ""
             ? MainViewBinding()
             : LoginAndRegisterationBinding();
   }

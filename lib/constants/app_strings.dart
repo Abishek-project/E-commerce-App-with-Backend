@@ -42,7 +42,8 @@ class AppStrings {
   static const String noItemsFound = "No Items Found";
   static const String addToCart = "Add to cart";
   static const String findYourPerfectProduct = "Find Your Perfect Product!";
-
+  static const String subtotal = "Subtotal";
   static const String rateProduct = "Rate this product";
   static const String discover = "Discover";
+  static const String checkout = "Checkout";
 }

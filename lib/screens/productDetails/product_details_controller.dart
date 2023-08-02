@@ -24,7 +24,8 @@ class ProductDetailsController extends GetxController
       for (var i = 0; i < product.value!.rating!.length; i++) {
         totalRating += product.value!.rating![i].rating;
 
-        if (product.value!.rating![i].userId == GlobalController.appUser!.id) {
+        if (product.value!.rating![i].userId ==
+            GlobalController.appUser.value!.id) {
           myRating.value = product.value!.rating![i].rating;
         }
       }
@@ -48,9 +49,17 @@ class ProductDetailsController extends GetxController
     if (response.statusCode == 200) {
       SharedPreferences pref = await SharedPreferences.getInstance();
 
-      await pref.setString(SharedPreferenceKey.appUser, response.body);
+      GlobalController.appUser.value = User.fromJson(response.body);
+      var token = pref.getString(SharedPreferenceKey.token);
 
-      GlobalController.appUser = User.fromJson(response.body);
+      GlobalController.appUser.value!.token = token.toString();
+
+      Get.showSnackbar(
+        const GetSnackBar(
+          message: 'Added to cart',
+          duration: Duration(seconds: 3),
+        ),
+      );
     } else if (response.statusCode != 200) {
       ErrorHandling.errorHandling(response);
     }
