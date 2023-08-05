@@ -15,4 +15,5 @@ class AppAssets {
   static const String backArrow = "assets/backArrow.svg";
   static const String shopBag = "assets/bag-svgrepo-com.svg";
   static const String filterIcon = "assets/filter-edit-svgrepo-com.svg";
+  static const String location = "assets/location-pin-svgrepo-com.svg";
 }

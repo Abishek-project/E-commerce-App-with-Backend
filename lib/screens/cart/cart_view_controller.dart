@@ -33,8 +33,8 @@ class CartController extends GetxController with CartVariables {
       GlobalController.appUser.value!.token = token.toString();
       Navigator.pop(context);
     } else if (response.statusCode != 200) {
-      ErrorHandling.errorHandling(response);
       Navigator.pop(context);
+      ErrorHandling.errorHandling(response);
     }
   }
 

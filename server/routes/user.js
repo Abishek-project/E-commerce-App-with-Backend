@@ -2,6 +2,7 @@ const express = require("express");
 const auth = require("../middleware/auth_middleware");
 const { Product } = require("../models/product");
 const User = require("../models/user");
+const Order = require("../models/order");
 const userRouter = express.Router();
 
 userRouter.get("/popular-products", auth, async (req, res) => {
@@ -119,4 +120,58 @@ userRouter.delete("/remove-from-cart/:id", auth, async (req, res) => {
     }
 })
 
+
+userRouter.post("/user-address", auth, async (req, res) => {
+    try {
+        const { address } = req.body;
+        let user = await User.findById(req.user);
+        user.address = address;
+        user = await user.save();
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
+userRouter.post("/order", auth, async (req, res) => {
+    try {
+        const { cart, totalPrice, address } = req.body;
+        let productList = [];
+        for (let i = 0; i < cart.length; i++) {
+            let product = await Product.findById(cart[i].product._id);
+            if (product.quantity >= cart[i].quantity) {
+                product.quantity -= cart[i].quantity
+                productList.push(
+                    {
+                        product,
+                        quantity: cart[i].quantity
+                    }
+                )
+                console.log(productList);
+                await product.save();
+            }
+            else {
+                return res.status(400).json({ msg: `${product.name} is out of stock!` });
+            }
+
+        }
+        let user = await User.findById(req.user);
+        user.cart = [];
+        await user.save();
+        let order = new Order(
+            {
+                products: productList,
+                totalPrice,
+                UserId: req.user,
+                address,
+                orderdAt: new Date().getTime(),
+
+            }
+        )
+        order = await order.save();
+        res.json(order);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
 module.exports = userRouter;

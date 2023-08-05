@@ -46,4 +46,9 @@ class AppStrings {
   static const String rateProduct = "Rate this product";
   static const String discover = "Discover";
   static const String checkout = "Checkout";
+  static const String deliveringTo = "Delivering to";
+  static const String edit = "Edit";
+  static const String payNow = "Pay Now";
+  static const String productOrderSuccess = "Product Ordred successfully!";
+  static const String ok = "Ok";
 }

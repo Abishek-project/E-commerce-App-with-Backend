@@ -1,4 +1,6 @@
+import 'package:ecommerce/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
 class CommonWidgetFuncions {
@@ -18,15 +20,19 @@ class CommonWidgetFuncions {
       barrierDismissible: true,
       builder: (_) => WillPopScope(
         onWillPop: () async => false,
-        child: const Center(
-          child: SizedBox(
-            width: 45,
-            height: 45,
-            child: CircularProgressIndicator(
-              strokeWidth: 5,
+        child: Center(
+            child: SpinKitWave(
+          size: 30,
+          color: Appcolors.blue,
+        )
+            //  SizedBox(
+            //   width: 45,
+            //   height: 45,
+            //   child: CircularProgressIndicator(
+            //     strokeWidth: 5,
+            //   ),
+            // ),
             ),
-          ),
-        ),
       ),
     );
   }

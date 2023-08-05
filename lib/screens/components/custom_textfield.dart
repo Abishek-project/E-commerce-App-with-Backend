@@ -9,6 +9,7 @@ class TextFieldWidget extends StatelessWidget {
   String? Function(String?)? validator;
   Color? prefixIconColor;
   int? maxLines;
+  FocusNode? focusNode;
   TextFieldWidget(
       {Key? key,
       required this.controller,
@@ -17,12 +18,14 @@ class TextFieldWidget extends StatelessWidget {
       this.validator,
       this.prefixIconColor,
       this.maxLines = 1,
+      this.focusNode,
       required this.hintText})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       maxLines: maxLines,
       validator: validator,
       controller: controller,

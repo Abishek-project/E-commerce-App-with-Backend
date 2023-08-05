@@ -242,7 +242,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             Button(
                                 onTap: () async {
                                   await controller.productAddToCart(
-                                      controller.product.value);
+                                      controller.product.value, context);
                                 },
                                 child: Center(
                                     child: Text(AppStrings.addToCart,

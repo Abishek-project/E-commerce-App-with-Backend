@@ -9,6 +9,8 @@ class UserServices {
   String url = ApiUrl.baseUrl;
   String addToCartProduct = ApiUrl.addToCart;
   String removeFromCartProduct = ApiUrl.removeFromCart;
+  String userAddress = ApiUrl.saveUserAddress;
+  String order = ApiUrl.order;
 
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
@@ -36,6 +38,31 @@ class UserServices {
       http.Response response = await http.delete(
         Uri.parse("$url$removeFromCartProduct${product.id}"),
         headers: headers,
+      );
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  saveUserAddress(address) async {
+    try {
+      http.Response response = await http.post(Uri.parse("$url$userAddress"),
+          headers: headers, body: jsonEncode({"address": address}));
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  userOrder(cart, totalPrice, address) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse("$url$order"),
+        headers: headers,
+        body: jsonEncode(
+          {"cart": cart, "totalPrice": totalPrice, "address": address},
+        ),
       );
       return response;
     } catch (e) {

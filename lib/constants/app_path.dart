@@ -9,4 +9,5 @@ class AppPaths {
   static const category = "/category";
   static const search = "/search";
   static const productDetails = "/details";
+  static const addressView = "/address";
 }
