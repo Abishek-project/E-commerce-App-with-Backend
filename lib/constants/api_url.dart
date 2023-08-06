@@ -15,4 +15,5 @@ class ApiUrl {
   static String removeFromCart = "/remove-from-cart/";
   static String saveUserAddress = "/user-address";
   static String order = "/order";
+  static String orderMe = "/order-me";
 }

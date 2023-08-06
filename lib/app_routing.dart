@@ -13,6 +13,8 @@ import 'package:ecommerce/screens/login&register/login_view.dart';
 import 'package:ecommerce/screens/login&register/register_view.dart';
 import 'package:ecommerce/screens/main/main_view.dart';
 import 'package:ecommerce/screens/main/main_view_binding.dart';
+import 'package:ecommerce/screens/orders/orders_bindings.dart';
+import 'package:ecommerce/screens/orders/orders_view.dart';
 import 'package:ecommerce/screens/productDetails/product_details_binding.dart';
 import 'package:ecommerce/screens/productDetails/product_details_view.dart';
 import 'package:ecommerce/screens/search/search_binding.dart';
@@ -70,5 +72,9 @@ class AppRoutes {
         name: AppPaths.addressView,
         page: () => AddressView(),
         binding: AddressBinding()),
+    GetPage(
+        name: AppPaths.orderView,
+        page: () => OrderView(),
+        binding: OrderBindings()),
   ];
 }

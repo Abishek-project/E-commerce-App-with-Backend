@@ -114,11 +114,18 @@ class CartView extends GetView<CartController> {
                     ),
                   )),
             InkWell(
-              onTap: () {
+              onTap: () async {
                 if (GlobalController.appUser.value!.cart.isEmpty) {
                   CommonWidgetFuncions()
                       .showAlertSnackbar("Your cart is Empty !");
                 } else {
+                  // Show the loading overlay
+                  await CommonWidgetFuncions().showOverlayLoader();
+                  // Simulate loading delay
+                  await Future.delayed(
+                    const Duration(seconds: 1),
+                    () => Navigator.of(context).pop(),
+                  );
                   Get.toNamed(AppPaths.addressView,
                       arguments: controller.sum.value);
                 }

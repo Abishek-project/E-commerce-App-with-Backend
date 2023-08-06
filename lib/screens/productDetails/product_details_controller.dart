@@ -71,7 +71,7 @@ class ProductDetailsController extends GetxController
       // );
       showCupertinoDialog(
         context: context,
-        builder: (BuildContext context) {
+        builder: (_) {
           return CupertinoAlertDialog(
               title: const Text("Successfully added !"),
               content: const Text("Check Your Cart"),

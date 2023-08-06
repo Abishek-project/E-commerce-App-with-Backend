@@ -174,4 +174,14 @@ userRouter.post("/order", auth, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 })
+
+
+userRouter.get("/order-me", auth, async (req, res) => {
+    try {
+        let order = await Order.find({ UserId: req.user });
+        res.json(order);
+    } catch (error) {
+        return req.status(500).json({ error: error.message })
+    }
+})
 module.exports = userRouter;

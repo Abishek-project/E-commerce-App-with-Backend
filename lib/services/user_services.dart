@@ -11,6 +11,7 @@ class UserServices {
   String removeFromCartProduct = ApiUrl.removeFromCart;
   String userAddress = ApiUrl.saveUserAddress;
   String order = ApiUrl.order;
+  String orderMe = ApiUrl.orderMe;
 
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
@@ -64,6 +65,16 @@ class UserServices {
           {"cart": cart, "totalPrice": totalPrice, "address": address},
         ),
       );
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  getOrders() async {
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$url$orderMe"), headers: headers);
       return response;
     } catch (e) {
       CommonWidgetFuncions().showAlertSnackbar(e.toString());

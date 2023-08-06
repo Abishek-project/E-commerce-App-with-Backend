@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:ecommerce/constants/app_assets.dart';
 import 'package:ecommerce/constants/app_colors.dart';
+import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/controller/global_controller.dart';
+import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:ecommerce/screens/profile/components/profile_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -87,7 +92,16 @@ class ProfileView extends StatelessWidget {
                 ProfileMenuItem(
                   iconSrc: AppAssets.orderIcon,
                   title: AppStrings.orders,
-                  press: () {},
+                  press: () async {
+                    // Show the loading overlay
+                    await CommonWidgetFuncions().showOverlayLoader();
+                    // Simulate loading delay
+                    await Future.delayed(
+                      const Duration(seconds: 1),
+                      () => Navigator.of(context).pop(),
+                    );
+                    Get.toNamed(AppPaths.orderView);
+                  },
                 ),
                 const SizedBox(
                   height: 12,

@@ -56,4 +56,5 @@ class AppStrings {
   static const String wishlist = "Wishlist";
   static const String notification = "Notification";
   static const String logout = "Logout";
+  static const String yourOrders = "Your Orders !";
 }
