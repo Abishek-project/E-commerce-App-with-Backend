@@ -30,7 +30,7 @@ class CartCart extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.12,
+              height: MediaQuery.of(context).size.height * 0.10,
               width: MediaQuery.of(context).size.width * 0.22,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(

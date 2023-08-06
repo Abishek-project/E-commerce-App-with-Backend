@@ -16,4 +16,8 @@ class AppAssets {
   static const String shopBag = "assets/bag-svgrepo-com.svg";
   static const String filterIcon = "assets/filter-edit-svgrepo-com.svg";
   static const String location = "assets/location-pin-svgrepo-com.svg";
+  static const String orderIcon = "assets/cart-large-2-svgrepo-com (1).svg";
+  static const String wishlist = "assets/heart-svgrepo-com.svg";
+  static const String notification = "assets/notification-bing-svgrepo-com.svg";
+  static const String logout = "assets/logout-svgrepo-com.svg";
 }

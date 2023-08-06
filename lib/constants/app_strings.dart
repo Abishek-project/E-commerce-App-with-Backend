@@ -51,4 +51,9 @@ class AppStrings {
   static const String payNow = "Pay Now";
   static const String productOrderSuccess = "Product Ordred successfully!";
   static const String ok = "Ok";
+  static const String profile = "Profile";
+  static const String orders = "Orders";
+  static const String wishlist = "Wishlist";
+  static const String notification = "Notification";
+  static const String logout = "Logout";
 }
