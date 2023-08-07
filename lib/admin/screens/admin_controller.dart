@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ecommerce/admin/screens/admin_variables.dart';
+import 'package:ecommerce/models/order.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,7 @@ class AdminController extends GetxController with AdminVariables {
 
   init() async {
     await getAllAdminAddedProducts();
+    await allEarnings();
   }
 
   changeTabIndex(int value) {
@@ -69,9 +71,30 @@ class AdminController extends GetxController with AdminVariables {
     }
   }
 
+  getAllOrderProducts() async {
+    http.Response response = await adminService.getAllOrderProducts();
+    allOrderProducts.value = [];
+    if (response.statusCode == 200) {
+      var body = jsonDecode(response.body);
+      for (var element in body) {
+        allOrderProducts.value.add(Order.fromMap(element));
+      }
+      allOrderProducts.refresh();
+    } else if (response.statusCode != 200) {
+      ErrorHandling.errorHandling(response);
+    }
+  }
+
   deleteProducts(id, index) async {
     await adminService.deleteProducts(id);
     allProducts.removeAt(index);
     allProducts.refresh();
+  }
+
+  allEarnings() async {
+    var response = await adminService.getEarnings();
+    totalEarning.value = response["totalEarning"];
+    earning.value = response["sales"];
+    print(earning);
   }
 }

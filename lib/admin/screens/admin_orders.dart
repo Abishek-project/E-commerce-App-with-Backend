@@ -1,19 +1,16 @@
+import 'package:ecommerce/admin/screens/admin_controller.dart';
 import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/screens/components/empty_orders.dart';
 import 'package:ecommerce/screens/components/order_card.dart';
-import 'package:ecommerce/screens/orders/orders_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import '../../constants/app_assets.dart';
 
-class OrderView extends GetView<OrderController> {
-  OrderView({super.key}) {
-    controller.init();
-  }
+class AdminOrderView extends GetView<AdminController> {
+  const AdminOrderView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,30 +19,13 @@ class OrderView extends GetView<OrderController> {
         child: SafeArea(
           child: Column(
             children: [
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () => Get.back(),
-                    child: SvgPicture.asset(
-                      AppAssets.backArrow,
-                      height: 24,
-                      width: 24,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    AppStrings.yourOrders,
-                    style: AppTypography.appTitle2,
-                  ),
-                  const Spacer(),
-                ],
-              ),
+              appBarWidget(),
               const Divider(),
               const SizedBox(
                 height: 10,
               ),
               FutureBuilder(
-                future: controller.getOrders(),
+                future: controller.getAllOrderProducts(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Expanded(
@@ -69,7 +49,7 @@ class OrderView extends GetView<OrderController> {
                   } else {
                     return Expanded(
                       child: GridView.builder(
-                        itemCount: controller.orderProducts.length,
+                        itemCount: controller.allOrderProducts.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
@@ -80,10 +60,11 @@ class OrderView extends GetView<OrderController> {
                           return OrderCard(
                             onTap: (() {
                               Get.toNamed(AppPaths.orderDetails,
-                                  arguments: controller.orderProducts[index]);
+                                  arguments:
+                                      controller.allOrderProducts[index]);
                             }),
-                            image: controller
-                                .orderProducts[index].products[index].images[0],
+                            image: controller.allOrderProducts[index]
+                                .products[index].images[0],
                           );
                         },
                       ),
@@ -95,6 +76,24 @@ class OrderView extends GetView<OrderController> {
           ),
         ),
       ),
+    );
+  }
+
+  Row appBarWidget() {
+    return Row(
+      children: [
+        SvgPicture.asset(
+          AppAssets.backArrow,
+          height: 24,
+          width: 24,
+        ),
+        const Spacer(),
+        Text(
+          AppStrings.yourOrders,
+          style: AppTypography.appTitle2,
+        ),
+        const Spacer(),
+      ],
     );
   }
 }

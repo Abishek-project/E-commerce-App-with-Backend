@@ -77,7 +77,7 @@ class PostsScreen extends GetView<AdminController> {
                               svgIcon: AppAssets.trashIcon,
                               svgColor: Appcolors.brandRed500,
                               productTitle: product.name,
-                              productPrice: "\$${product.price}",
+                              productPrice: "\₹${product.price}",
                               image: product.images[0]);
                         },
                       ),

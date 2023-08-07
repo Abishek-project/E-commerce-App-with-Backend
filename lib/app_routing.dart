@@ -15,6 +15,8 @@ import 'package:ecommerce/screens/main/main_view.dart';
 import 'package:ecommerce/screens/main/main_view_binding.dart';
 import 'package:ecommerce/screens/orders/orders_bindings.dart';
 import 'package:ecommerce/screens/orders/orders_view.dart';
+import 'package:ecommerce/screens/ordersDetails/order_details_bindings.dart';
+import 'package:ecommerce/screens/ordersDetails/order_details_view.dart';
 import 'package:ecommerce/screens/productDetails/product_details_binding.dart';
 import 'package:ecommerce/screens/productDetails/product_details_view.dart';
 import 'package:ecommerce/screens/search/search_binding.dart';
@@ -76,5 +78,9 @@ class AppRoutes {
         name: AppPaths.orderView,
         page: () => OrderView(),
         binding: OrderBindings()),
+    GetPage(
+        name: AppPaths.orderDetails,
+        page: () => OrderDetailsView(),
+        binding: OrderDetailsBindings()),
   ];
 }

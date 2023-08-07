@@ -61,7 +61,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
                       socialButton(),
-                      loginButton(),
+                      loginButton(context),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
                       ),
@@ -300,7 +300,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
     );
   }
 
-  Padding loginButton() {
+  Padding loginButton(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 35, right: 10, left: 10),
       child: Obx(() => Button(
@@ -308,8 +308,8 @@ class LoginView extends GetView<LoginAndRegisterationController> {
               if (controller.formKey2.currentState!.validate()) {
                 controller.isLogin.value = true;
 
-                controller.userSignIn(
-                    controller.loginEmail.text, controller.loginPassword.text);
+                controller.userSignIn(controller.loginEmail.text,
+                    controller.loginPassword.text, context);
               }
             }),
             child: controller.isLogin.value

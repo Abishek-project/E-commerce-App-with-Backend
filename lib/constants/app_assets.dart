@@ -20,4 +20,6 @@ class AppAssets {
   static const String wishlist = "assets/heart-svgrepo-com.svg";
   static const String notification = "assets/notification-bing-svgrepo-com.svg";
   static const String logout = "assets/logout-svgrepo-com.svg";
+  static const String profile = "assets/profile.jpeg";
+  static const String filter = "assets/filter-edit-svgrepo-com.svg";
 }

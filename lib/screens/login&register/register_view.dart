@@ -313,7 +313,8 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
                 controller.userSignUp(
                     controller.userName.text,
                     controller.registrationEmail.text,
-                    controller.registrationPassword.text);
+                    controller.registrationPassword.text,
+                    context);
               }
             }),
             child: controller.isSignUp.value

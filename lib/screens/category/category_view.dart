@@ -19,26 +19,7 @@ class CategoryView extends GetView<CategoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Appcolors.appMainColor,
-        elevation: 0,
-        title: Text(
-          controller.category.value,
-          style: AppTypography.bodyMedium2,
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8, top: 5),
-            child: SvgPicture.asset(
-              AppAssets.shopBag,
-              height: 22,
-              width: 22,
-              color: Appcolors.appWhite,
-            ),
-          )
-        ],
-      ),
+      appBar: appBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16),
@@ -57,40 +38,6 @@ class CategoryView extends GetView<CategoryController> {
                 ],
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              // Obx(() => controller.categoryProducts.isEmpty
-              //     ? Expanded(
-              //         child: Column(
-              //           mainAxisAlignment: MainAxisAlignment.center,
-              //           children: const [
-              //             Center(
-              //               child: CircularProgressIndicator(),
-              //             ),
-              //           ],
-              //         ),
-              //       )
-              //     : Expanded(
-              //         child: GridView.builder(
-              //           itemCount: controller.categoryProducts.length,
-              //           gridDelegate:
-              //               const SliverGridDelegateWithFixedCrossAxisCount(
-              //                   crossAxisCount: 2,
-              //                   childAspectRatio: 0.75,
-              //                   crossAxisSpacing: 20,
-              //                   mainAxisSpacing: 20),
-              //           itemBuilder: (context, index) {
-              //             // ignore: invalid_use_of_protected_member
-              //             Product product =
-              //                 controller.categoryProducts.value[index];
-              //             return ProductCard(
-              //                 trailingOnTop: () {},
-              //                 svgIcon: AppAssets.heartIcon,
-              //                 // svgColor: Appcolors.brandRed500,
-              //                 productTitle: product.name,
-              //                 productPrice: "\$${product.price}",
-              //                 image: product.images[0]);
-              //           },
-              //         ),
-              //       )),
               FutureBuilder(
                 future: controller.getProducts(controller.category.value),
                 builder: (context, snapshot) {
@@ -139,7 +86,7 @@ class CategoryView extends GetView<CategoryController> {
                                   },
                                   svgIcon: AppAssets.heartIcon,
                                   productTitle: product.name,
-                                  productPrice: "\$${product.price}",
+                                  productPrice: "\₹${product.price}",
                                   image: product.images[0]);
                             },
                           ),
@@ -151,6 +98,29 @@ class CategoryView extends GetView<CategoryController> {
           ),
         ),
       ),
+    );
+  }
+
+  AppBar appBar() {
+    return AppBar(
+      backgroundColor: Appcolors.appMainColor,
+      elevation: 0,
+      title: Text(
+        controller.category.value,
+        style: AppTypography.bodyMedium2,
+      ),
+      centerTitle: true,
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 8, top: 5),
+          child: SvgPicture.asset(
+            AppAssets.shopBag,
+            height: 22,
+            width: 22,
+            color: Appcolors.appWhite,
+          ),
+        )
+      ],
     );
   }
 }

@@ -34,27 +34,7 @@ class Homeview extends GetView<HomeViewController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SearchWidget(
-                      controller: controller.searchController,
-                      onSubmitted: (val) =>
-                          controller.navigateToSearchView(val.trim()),
-                    ),
-                    Obx(() => IconBtnWithCounter(
-                          svgSrc: AppAssets.cart,
-                          press: (() {}),
-                          numOfitem:
-                              GlobalController.appUser.value!.cart.length,
-                        )),
-                    IconBtnWithCounter(
-                      svgSrc: AppAssets.bell,
-                      press: (() {}),
-                      numOfitem: 4,
-                    ),
-                  ],
-                ),
+                appBar(),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 const DiscountBanner(),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
@@ -71,31 +51,7 @@ class Homeview extends GetView<HomeViewController> {
                 // Category widget..
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ...List.generate(
-                          controller.allCategories.length,
-                          (index) => InkWell(
-                                onTap: () => Get.toNamed(AppPaths.category,
-                                    arguments: controller.allCategories[index]
-                                        ["name"]),
-                                child: CategoryCard(
-                                  text: controller.allCategories[index]["name"],
-                                  icon: controller.allCategories[index]["icon"],
-                                  color: index == 0
-                                      ? Appcolors.appMainColor
-                                      : Appcolors.appWhite,
-                                  textColor: index == 0
-                                      ? Appcolors.appWhite
-                                      : Appcolors.appBlackDark,
-                                  border: index == 0
-                                      ? null
-                                      : Border.all(
-                                          color: Appcolors.lightGray11),
-                                ),
-                              ))
-                    ],
-                  ),
+                  child: allCategoryWidget(),
                 ),
                 // Special offers header..
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
@@ -109,62 +65,6 @@ class Homeview extends GetView<HomeViewController> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 SectionTitle(press: (() {}), title: AppStrings.popularProducts),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-
-                // Product card widget..
-                // Container(
-                //   width: MediaQuery.of(context)
-                //       .size
-                //       .width, // Ensure the container takes full width
-                //   height: MediaQuery.of(context).size.height * 0.3,
-                //   child: SingleChildScrollView(
-                //     scrollDirection: Axis.horizontal,
-                //     child: Row(
-                //       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //       children: [
-                //         ...List.generate(
-                //           controller.popularProducts.length,
-                //           (index) {
-                //             Product product =
-                //                 controller.popularProducts.value[index];
-                //             return Container(
-                //               padding: const EdgeInsets.only(right: 10),
-                //               child: ProductCard(
-                //                   trailingOnTop: () {},
-                //                   svgIcon: AppAssets.heartIcon,
-                //                   productTitle: product.name,
-                //                   productPrice: "\$${product.price}",
-                //                   image: product.images[0]),
-                //             );
-                //           },
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // ),
-
-                // SizedBox(
-                //   width: MediaQuery.of(context)
-                //       .size
-                //       .width, // Ensure the container takes full width
-                //   height: MediaQuery.of(context).size.height * 0.3,
-                //   child: ListView.builder(
-                //     scrollDirection: Axis.horizontal,
-                //     itemCount: controller.popularProducts.length,
-                //     itemBuilder: (context, index) {
-                //       Product product = controller.popularProducts.value[index];
-                //       return Container(
-                //         padding: const EdgeInsets.only(right: 10),
-                //         width: MediaQuery.of(context).size.width * 0.45,
-                //         child: ProductCard(
-                //             trailingOnTop: () {},
-                //             svgIcon: AppAssets.heartIcon,
-                //             productTitle: product.name,
-                //             productPrice: "\$${product.price}",
-                //             image: product.images[0]),
-                //       );
-                //     },
-                //   ),
-                // ),
 
                 FutureBuilder(
                   future: controller.getPopularProducts(),
@@ -216,7 +116,7 @@ class Homeview extends GetView<HomeViewController> {
                                   trailingOnTop: () {},
                                   svgIcon: AppAssets.heartIcon,
                                   productTitle: product.name,
-                                  productPrice: "\$${product.price}",
+                                  productPrice: "\₹${product.price}",
                                   image: product.images[0]),
                             );
                           },
@@ -232,6 +132,54 @@ class Homeview extends GetView<HomeViewController> {
           ),
         ),
       ),
+    );
+  }
+
+  Row allCategoryWidget() {
+    return Row(
+      children: [
+        ...List.generate(
+            controller.allCategories.length,
+            (index) => InkWell(
+                  onTap: () => Get.toNamed(AppPaths.category,
+                      arguments: controller.allCategories[index]["name"]),
+                  child: CategoryCard(
+                    text: controller.allCategories[index]["name"],
+                    icon: controller.allCategories[index]["icon"],
+                    color: index == 0
+                        ? Appcolors.appMainColor
+                        : Appcolors.appWhite,
+                    textColor: index == 0
+                        ? Appcolors.appWhite
+                        : Appcolors.appBlackDark,
+                    border: index == 0
+                        ? null
+                        : Border.all(color: Appcolors.lightGray11),
+                  ),
+                ))
+      ],
+    );
+  }
+
+  Row appBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SearchWidget(
+          controller: controller.searchController,
+          onSubmitted: (val) => controller.navigateToSearchView(val.trim()),
+        ),
+        Obx(() => IconBtnWithCounter(
+              svgSrc: AppAssets.cart,
+              press: (() {}),
+              numOfitem: GlobalController.appUser.value!.cart.length,
+            )),
+        IconBtnWithCounter(
+          svgSrc: AppAssets.bell,
+          press: (() {}),
+          numOfitem: 4,
+        ),
+      ],
     );
   }
 }

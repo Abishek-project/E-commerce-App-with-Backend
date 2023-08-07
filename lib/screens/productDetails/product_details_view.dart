@@ -7,7 +7,6 @@ import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/components/custom_button.dart';
 import 'package:ecommerce/screens/components/rating.dart';
 import 'package:ecommerce/screens/productDetails/product_details_controller.dart';
-import 'package:ecommerce/services/user_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -26,59 +25,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
           children: [
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: SvgPicture.asset(
-                          AppAssets.backArrow,
-                          height: 25,
-                          width: 25,
-                          color: Appcolors.appBlackDark,
-                        ),
-                      ),
-                      Stack(
-                        children: [
-                          SvgPicture.asset(
-                            AppAssets.shopBag,
-                          ),
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Container(
-                              height: 16,
-                              width: 16,
-                              decoration: BoxDecoration(
-                                color: Appcolors.appMainColor,
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 1.5, color: Colors.white),
-                              ),
-                              child: Center(
-                                child: Obx(() => Text(
-                                      GlobalController
-                                          .appUser.value!.cart.length
-                                          .toString(),
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        height: 1,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                    )),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                appBar(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width,
@@ -106,162 +53,213 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             height: 200),
                       ),
                       controller.product.value!.images.length > 1
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ...List.generate(
-                                  controller.product.value!.images.length,
-                                  (index) => Padding(
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: Obx(
-                                      () => AnimatedContainer(
-                                        height:
-                                            controller.selectedIndex.value ==
-                                                    index
-                                                ? 7
-                                                : 6,
-                                        width: 6,
-                                        decoration: BoxDecoration(
-                                          color:
-                                              controller.selectedIndex.value ==
-                                                      index
-                                                  ? Appcolors.appMainColor
-                                                  : Appcolors.appMainColor
-                                                      .withOpacity(0.5),
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                        duration:
-                                            const Duration(milliseconds: 300),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
+                          ? productCountDot()
                           : Container()
                     ],
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Appcolors.appWhite,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16, right: 16),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              height: 12,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  controller.product.value!.name,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppTypography.appTitle3,
-                                ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.star,
-                                      size: 18,
-                                      color: Colors.amber,
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    Obx(() => Text(
-                                        controller.avgRating.value
-                                            .toStringAsFixed(1),
-                                        style: AppTypography.appSubTitlebold
-                                            .copyWith(
-                                                color: Appcolors.appBlack)))
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 14, bottom: 14),
-                              child: Text(AppStrings.description,
-                                  style: AppTypography.appSubTitle3),
-                            ),
-                            Text(
-                              controller.product.value!.description,
-                              style: AppTypography.appSubTitle7
-                                  .copyWith(color: Appcolors.appBlack),
-                              textAlign: TextAlign.justify,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  AppStrings.price,
-                                  style: AppTypography.appSubTitle3
-                                      .copyWith(color: Appcolors.appBlackDark),
-                                ),
-                                Text(
-                                  "\$${controller.product.value!.price}",
-                                  style: AppTypography.appTitle3,
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(AppStrings.rateProduct,
-                                style: AppTypography.bodyMedium
-                                    .copyWith(color: Appcolors.appBlack)),
-                            Obx(() => StarRating(
-                                  starCount: 5,
-                                  itemsize: 20,
-                                  initialRating:
-                                      controller.myRating.value.toDouble(),
-                                  onRatingUpdate: (val) {
-                                    controller.rateTheProducts(
-                                        controller.product.value, val);
-                                  },
-                                )),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Button(
-                                onTap: () async {
-                                  await controller.productAddToCart(
-                                      controller.product.value, context);
-                                },
-                                child: Center(
-                                    child: Text(AppStrings.addToCart,
-                                        style: AppTypography.appSubTitle3
-                                            .copyWith(
-                                                color: Appcolors.appWhite)))),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
+                productDetailsWidget(context)
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  productCountDot() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ...List.generate(
+            controller.product.value!.images.length,
+            (index) => Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Obx(
+                () => AnimatedContainer(
+                  height: controller.selectedIndex.value == index ? 7 : 6,
+                  width: 6,
+                  decoration: BoxDecoration(
+                    color: controller.selectedIndex.value == index
+                        ? Appcolors.appMainColor
+                        : Appcolors.appMainColor.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  duration: const Duration(milliseconds: 300),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  productDetailsWidget(BuildContext context) {
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Appcolors.appWhite,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      controller.product.value!.name,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.appTitle3,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          size: 18,
+                          color: Colors.amber,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Obx(() => Text(
+                            controller.avgRating.value.toStringAsFixed(1),
+                            style: AppTypography.appSubTitlebold
+                                .copyWith(color: Appcolors.appBlack)))
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 14, bottom: 14),
+                  child: Text(AppStrings.description,
+                      style: AppTypography.appSubTitle3),
+                ),
+                Text(
+                  controller.product.value!.description,
+                  style: AppTypography.appSubTitle7
+                      .copyWith(color: Appcolors.appBlack),
+                  textAlign: TextAlign.justify,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppStrings.price,
+                      style: AppTypography.appSubTitle3
+                          .copyWith(color: Appcolors.appBlackDark),
+                    ),
+                    Text(
+                      "\₹${controller.product.value!.price}",
+                      style: AppTypography.appTitle3,
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(AppStrings.rateProduct,
+                    style: AppTypography.bodyMedium
+                        .copyWith(color: Appcolors.appBlack)),
+                Obx(() => StarRating(
+                      starCount: 5,
+                      itemsize: 20,
+                      initialRating: controller.myRating.value.toDouble(),
+                      onRatingUpdate: (val) {
+                        controller.rateTheProducts(
+                            controller.product.value, val);
+                      },
+                    )),
+                const SizedBox(
+                  height: 30,
+                ),
+                Button(
+                    onTap: () async {
+                      await controller.productAddToCart(
+                          controller.product.value, context);
+                    },
+                    child: Center(
+                        child: Text(AppStrings.addToCart,
+                            style: AppTypography.appSubTitle3
+                                .copyWith(color: Appcolors.appWhite)))),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding appBar() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: SvgPicture.asset(
+              AppAssets.backArrow,
+              height: 25,
+              width: 25,
+              color: Appcolors.appBlackDark,
+            ),
+          ),
+          Stack(
+            children: [
+              SvgPicture.asset(
+                AppAssets.shopBag,
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  height: 16,
+                  width: 16,
+                  decoration: BoxDecoration(
+                    color: Appcolors.appMainColor,
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 1.5, color: Colors.white),
+                  ),
+                  child: Center(
+                    child: Obx(() => Text(
+                          GlobalController.appUser.value!.cart.length
+                              .toString(),
+                          style: const TextStyle(
+                            fontSize: 10,
+                            height: 1,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

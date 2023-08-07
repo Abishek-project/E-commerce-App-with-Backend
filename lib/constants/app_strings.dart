@@ -57,4 +57,15 @@ class AppStrings {
   static const String notification = "Notification";
   static const String logout = "Logout";
   static const String yourOrders = "Your Orders !";
+  static const String yourCartEmpty = "Your cart is Empty !";
+  static const String cartEmpty = "Cart is empty !";
+  static const String viewOrderDetails = "View Order Details !";
+  static const String purchaseDetails = "Purchase Details !";
+  static const String tracking = "Tracking";
+  static const String done = "Done";
+  static const String cancel = "Canel";
+  static const String confirm = "Confirm";
+  static const String logoutDescription =
+      "Are you sure want to logout from your account";
+  static const String tapToView = "Tap to view details";
 }

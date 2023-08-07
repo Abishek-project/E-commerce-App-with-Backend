@@ -151,24 +151,7 @@ class AddProducts extends GetView<AdminController> {
                   ),
                   // DropDown menu..
                   Obx(
-                    () => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DropdownButton(
-                        isExpanded: true,
-                        style: AppTypography.appSubTitle2
-                            .copyWith(color: Appcolors.appBlackDark),
-                        value: controller.category.value,
-                        items: controller.allCategories.value.map((data) {
-                          return DropdownMenuItem<String>(
-                            value: data,
-                            child: Text(data),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          controller.category.value = value!;
-                        },
-                      ),
-                    ),
+                    () => dropDownWidget(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
@@ -201,6 +184,27 @@ class AddProducts extends GetView<AdminController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Padding dropDownWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: DropdownButton(
+        isExpanded: true,
+        style:
+            AppTypography.appSubTitle2.copyWith(color: Appcolors.appBlackDark),
+        value: controller.category.value,
+        items: controller.allCategories.value.map((data) {
+          return DropdownMenuItem<String>(
+            value: data,
+            child: Text(data),
+          );
+        }).toList(),
+        onChanged: (value) {
+          controller.category.value = value!;
+        },
       ),
     );
   }

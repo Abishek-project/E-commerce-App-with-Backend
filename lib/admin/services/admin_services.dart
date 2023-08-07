@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloudinary/cloudinary.dart';
+import 'package:ecommerce/admin/model/sales.dart';
 import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/components/common_widget_functions.dart';
@@ -13,6 +14,9 @@ class AdminService {
   String addProduct = ApiUrl.addProducts;
   String getAllProduct = ApiUrl.getAdminProducts;
   String deleteProduct = ApiUrl.deleteProduct;
+  String allOrders = ApiUrl.allOrders;
+  String changeStatus = ApiUrl.changeOrderStatus;
+  String analytics = ApiUrl.analytics;
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
     "auth-token": GlobalController.appUser.value!.token,
@@ -74,6 +78,17 @@ class AdminService {
     }
   }
 
+  getAllOrderProducts() async {
+    try {
+      http.Response response =
+          await http.post(Uri.parse("$url$allOrders"), headers: headers);
+
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
   deleteProducts(id) async {
     var body = {"id": id};
     try {
@@ -82,6 +97,40 @@ class AdminService {
       if (response.statusCode != 200) {
         ErrorHandling.errorHandling(response);
       }
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  changeOrderStatus(order, status) async {
+    var body = {"id": order.id, "status": status};
+    try {
+      var response = await http.post(Uri.parse("$url$changeStatus"),
+          body: jsonEncode(body), headers: headers);
+      if (response.statusCode != 200) {
+        ErrorHandling.errorHandling(response);
+      }
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  getEarnings() async {
+    List<Sales> sales = [];
+    int totalEarning = 0;
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$url$analytics"), headers: headers);
+      print(response);
+      var res = jsonDecode(response.body);
+      totalEarning = res["totalEarnings"];
+      sales = [
+        Sales("Mobiles", res["mobileEarnings"]),
+        Sales("Fashion", res["fashsionEarnings"]),
+        Sales("Appliances", res["applianceEarnings"]),
+        Sales("Furniture", res["furnitureEarnings"]),
+      ];
+      return {"sales": sales, "totalEarning": totalEarning};
     } catch (e) {
       CommonWidgetFuncions().showAlertSnackbar(e.toString());
     }

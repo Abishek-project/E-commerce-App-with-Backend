@@ -16,4 +16,7 @@ class ApiUrl {
   static String saveUserAddress = "/user-address";
   static String order = "/order";
   static String orderMe = "/order-me";
+  static String allOrders = "/admin/get-orders";
+  static String changeOrderStatus = "/admin/change-order-status";
+  static String analytics = "/admin/analytics";
 }

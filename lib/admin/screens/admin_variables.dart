@@ -1,4 +1,3 @@
-import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -23,4 +22,7 @@ class AdminVariables {
   final formKey = GlobalKey<FormState>();
   CommonWidgetFuncions commonWidgetFuncions = CommonWidgetFuncions();
   RxList allProducts = [].obs;
+  RxList allOrderProducts = [].obs;
+  RxInt totalEarning = 0.obs;
+  RxList earning = [].obs;
 }

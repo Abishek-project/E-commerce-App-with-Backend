@@ -58,7 +58,7 @@ class CartCart extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    ' \$$productPrice',
+                    ' \₹$productPrice',
                     style: AppTypography.appSubTitle3
                         .copyWith(color: Appcolors.appBlack),
                   ),

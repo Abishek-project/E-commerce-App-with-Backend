@@ -1,4 +1,6 @@
+import 'package:ecommerce/admin/screens/admin_analysics.dart';
 import 'package:ecommerce/admin/screens/admin_controller.dart';
+import 'package:ecommerce/admin/screens/admin_orders.dart';
 import 'package:ecommerce/admin/screens/posts_screen.dart';
 import 'package:ecommerce/constants/app_assets.dart';
 import 'package:ecommerce/screens/components/bottom_navigation.dart';
@@ -11,19 +13,21 @@ class AdminScreen extends GetView<AdminController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: controller.selectedIndex.value,
-        children: [
-          PostsScreen(),
-        ],
-      ),
+      body: Obx(() => IndexedStack(
+            index: controller.selectedIndex.value,
+            children: [
+              PostsScreen(),
+              AdminAnalysics(),
+              AdminOrderView(),
+            ],
+          )),
       bottomNavigationBar: Obx(
         () => BottomNavigationBarWidget(
             currentIndex: controller.selectedIndex.value,
             onTap: (value) => controller.changeTabIndex(value),
             bottomIconOne: AppAssets.home,
             bottomIconTwo: AppAssets.graph,
-            bottomIconThree: AppAssets.inbox),
+            bottomIconThree: AppAssets.cart),
       ),
     );
   }

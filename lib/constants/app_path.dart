@@ -11,4 +11,5 @@ class AppPaths {
   static const productDetails = "/details";
   static const addressView = "/address";
   static const orderView = "/order";
+  static const orderDetails = "/orderDetails";
 }

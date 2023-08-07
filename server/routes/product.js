@@ -4,7 +4,7 @@ const { Product } = require("../models/product");
 const productRouter = express.Router();
 productRouter.get("/product", auth, async (req, res) => {
     try {
-        console.log(req.query.category);
+
         const product = await Product.find({ category: req.query.category });
         res.send(product);
     } catch (e) {
@@ -14,7 +14,7 @@ productRouter.get("/product", auth, async (req, res) => {
 
 productRouter.get("/product/search/:name", auth, async (req, res) => {
     try {
-        console.log(req.params.name);
+
         const product = await Product.find({ name: { $regex: req.params.name, $options: "i" } });
         res.send(product);
     } catch (e) {
@@ -26,7 +26,7 @@ productRouter.post("/rate-product", auth, async (req, res) => {
     try {
         const { id, rating } = req.body;
         let product = await Product.findById(id);
-        console.log(product);
+
         for (let i = 0; i < product.ratings.length; i++) {
             if (product.ratings[i].userId == req.user) {
                 product.ratings.splice(i, 1);

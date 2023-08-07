@@ -6,7 +6,6 @@ import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../constants/shared_prefrences.dart';
 import '../../models/user.dart';
 import '../components/error_handling.dart';
@@ -24,7 +23,6 @@ class AddressController extends GetxController with AddressVariables {
   init() async {
     var data = Get.arguments;
     totalPrice.value = data;
-
     address.value = GlobalController.appUser.value!.address;
   }
 

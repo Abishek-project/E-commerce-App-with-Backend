@@ -8,7 +8,6 @@ import 'package:ecommerce/screens/cart/cart_view_controller.dart';
 import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../components/cart_card_view.dart';
 
 class CartView extends GetView<CartController> {
@@ -22,30 +21,7 @@ class CartView extends GetView<CartController> {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.menu),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                            text: "Check",
-                            style: AppTypography.appTitle2
-                                .copyWith(color: Appcolors.appBlackDark)),
-                        TextSpan(
-                            text: "Out",
-                            style: AppTypography.appTitle2
-                                .copyWith(color: Appcolors.appMainColor)),
-                      ],
-                    ),
-                  ),
-                  const Icon(Icons.more_horiz)
-                ],
-              ),
-            ),
+            appBar(),
             const Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -59,7 +35,7 @@ class CartView extends GetView<CartController> {
                   ),
                   Obx(
                     () => Text(
-                      "\$${controller.sum.value}",
+                      "\₹${controller.sum.value}",
                       style: AppTypography.bodyMedium2
                           .copyWith(color: Appcolors.appBlackDark),
                     ),
@@ -108,7 +84,7 @@ class CartView extends GetView<CartController> {
                 : Expanded(
                     child: Center(
                       child: Text(
-                        "Cart is empty !",
+                        AppStrings.cartEmpty,
                         style: AppTypography.appSubTitle4,
                       ),
                     ),
@@ -117,7 +93,7 @@ class CartView extends GetView<CartController> {
               onTap: () async {
                 if (GlobalController.appUser.value!.cart.isEmpty) {
                   CommonWidgetFuncions()
-                      .showAlertSnackbar("Your cart is Empty !");
+                      .showAlertSnackbar(AppStrings.yourCartEmpty);
                 } else {
                   // Show the loading overlay
                   await CommonWidgetFuncions().showOverlayLoader();
@@ -152,6 +128,33 @@ class CartView extends GetView<CartController> {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Padding appBar() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Icon(Icons.menu),
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                    text: "Check",
+                    style: AppTypography.appTitle2
+                        .copyWith(color: Appcolors.appBlackDark)),
+                TextSpan(
+                    text: "Out",
+                    style: AppTypography.appTitle2
+                        .copyWith(color: Appcolors.appMainColor)),
+              ],
+            ),
+          ),
+          const Icon(Icons.more_horiz)
+        ],
       ),
     );
   }

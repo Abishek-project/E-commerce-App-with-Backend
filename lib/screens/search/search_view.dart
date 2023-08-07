@@ -3,6 +3,7 @@ import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
+import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/components/empty_search_Card.dart';
 import 'package:ecommerce/screens/search/search_controller.dart';
 import 'package:flutter/material.dart';
@@ -25,57 +26,7 @@ class SearchView extends GetView<SerachViewController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () => Get.back(),
-                      child: SvgPicture.asset(
-                        AppAssets.backArrow,
-                        height: 25,
-                        width: 25,
-                        color: Appcolors.appBlackDark,
-                      ),
-                    ),
-                    Text(
-                      AppStrings.discover,
-                      style: AppTypography.appTitle2,
-                    ),
-                    Stack(
-                      children: [
-                        SvgPicture.asset(AppAssets.shopBag),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          child: Container(
-                            height: 16,
-                            width: 16,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFFF4848),
-                              shape: BoxShape.circle,
-                              border:
-                                  Border.all(width: 1.5, color: Colors.white),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "4",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  height: 1,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              appBar(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
@@ -88,7 +39,7 @@ class SearchView extends GetView<SerachViewController> {
                         .copyWith(color: Appcolors.appBlack),
                   ),
                   SvgPicture.asset(
-                    "assets/filter-edit-svgrepo-com.svg",
+                    AppAssets.filter,
                     color: Appcolors.appBlack.withOpacity(0.9),
                   ),
                 ],
@@ -135,7 +86,7 @@ class SearchView extends GetView<SerachViewController> {
                                       arguments: product),
                                   image: product.images[0],
                                   productName: product.name,
-                                  productPrice: "\$${product.price}"),
+                                  productPrice: "\₹${product.price}"),
                             );
                           },
                         ),
@@ -156,6 +107,60 @@ class SearchView extends GetView<SerachViewController> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Padding appBar() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          InkWell(
+            onTap: () => Get.back(),
+            child: SvgPicture.asset(
+              AppAssets.backArrow,
+              height: 25,
+              width: 25,
+              color: Appcolors.appBlackDark,
+            ),
+          ),
+          Text(
+            AppStrings.discover,
+            style: AppTypography.appTitle2,
+          ),
+          Stack(
+            children: [
+              SvgPicture.asset(AppAssets.shopBag),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  height: 16,
+                  width: 16,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFF4848),
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 1.5, color: Colors.white),
+                  ),
+                  child: Center(
+                    child: Obx(() => Text(
+                          GlobalController.appUser.value!.cart.length
+                              .toString(),
+                          style: const TextStyle(
+                            fontSize: 10,
+                            height: 1,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
