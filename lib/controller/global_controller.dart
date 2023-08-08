@@ -4,4 +4,5 @@ import 'package:get/get.dart';
 class GlobalController {
   // static User? appUser;
   static Rxn<User> appUser = Rxn<User>();
+  static RxBool isNetworkAvailable = false.obs;
 }

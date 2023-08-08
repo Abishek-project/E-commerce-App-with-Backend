@@ -2,6 +2,7 @@ import 'package:ecommerce/admin/screens/admin_binding.dart';
 import 'package:ecommerce/app_routing.dart';
 import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/controller/global_controller.dart';
+import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:ecommerce/screens/login&register/login_binding.dart';
 import 'package:ecommerce/screens/main/main_view_binding.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,12 @@ void main() async {
     ),
   );
   UserController userController = UserController();
+  await CommonWidgetFuncions().checkNetworkConnectivity();
+  if (GlobalController.isNetworkAvailable.value) {
+    await userController.getUserData();
+  } else {
+    CommonWidgetFuncions().showAlertSnackbar("Please Check Your Network !");
+  }
   await userController.getUserData();
   // print(GlobalController.appUser);
   // FlutterNativeSplash.remove();

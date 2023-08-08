@@ -55,7 +55,12 @@ class Homeview extends GetView<HomeViewController> {
                 ),
                 // Special offers header..
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                SectionTitle(press: (() {}), title: AppStrings.specialOffers),
+                SectionTitle(
+                    press: (() {
+                      controller.commonWidgetFuncions
+                          .showAlertSnackbar(AppStrings.commingSoon);
+                    }),
+                    title: AppStrings.specialOffers),
 
                 // Special offers widget..
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
@@ -63,7 +68,12 @@ class Homeview extends GetView<HomeViewController> {
 
                 // Popular products heading..
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                SectionTitle(press: (() {}), title: AppStrings.popularProducts),
+                SectionTitle(
+                    press: (() {
+                      controller.commonWidgetFuncions
+                          .showAlertSnackbar(AppStrings.commingSoon);
+                    }),
+                    title: AppStrings.popularProducts),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
 
                 FutureBuilder(

@@ -100,7 +100,10 @@ class ProfileView extends GetView<ProfileController> {
         ProfileMenuItem(
           iconSrc: AppAssets.wishlist,
           title: AppStrings.wishlist,
-          press: () {},
+          press: () {
+            controller.commonWidgetFuncions
+                .showAlertSnackbar(AppStrings.commingSoon);
+          },
         ),
         const SizedBox(
           height: 12,
@@ -108,7 +111,10 @@ class ProfileView extends GetView<ProfileController> {
         ProfileMenuItem(
           iconSrc: AppAssets.notification,
           title: AppStrings.notification,
-          press: () {},
+          press: () {
+            controller.commonWidgetFuncions
+                .showAlertSnackbar(AppStrings.commingSoon);
+          },
         ),
         const SizedBox(
           height: 12,
@@ -159,7 +165,10 @@ class ProfileView extends GetView<ProfileController> {
       ),
       actions: [
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.commonWidgetFuncions
+                .showAlertSnackbar(AppStrings.commingSoon);
+          },
           child: Text(
             AppStrings.edit,
             style: AppTypography.appSubTitlebold

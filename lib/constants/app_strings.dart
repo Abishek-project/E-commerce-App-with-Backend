@@ -68,4 +68,5 @@ class AppStrings {
   static const String logoutDescription =
       "Are you sure want to logout from your account";
   static const String tapToView = "Tap to view details";
+  static const String commingSoon = "Comming soon !";
 }

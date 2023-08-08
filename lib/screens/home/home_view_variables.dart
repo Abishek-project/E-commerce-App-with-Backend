@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,4 +12,5 @@ class HomeViewVariable {
     {"name": "Furniture", "icon": "assets/sofa.png"},
   ];
   RxList popularProducts = [].obs;
+  CommonWidgetFuncions commonWidgetFuncions = CommonWidgetFuncions();
 }

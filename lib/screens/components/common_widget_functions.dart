@@ -1,4 +1,6 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecommerce/constants/app_colors.dart';
+import 'package:ecommerce/controller/global_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
@@ -35,5 +37,15 @@ class CommonWidgetFuncions {
             ),
       ),
     );
+  }
+
+  checkNetworkConnectivity() async {
+    ConnectivityResult connectivityResult =
+        await (Connectivity().checkConnectivity());
+    if (connectivityResult != ConnectivityResult.none) {
+      GlobalController.isNetworkAvailable.value = true;
+    } else {
+      GlobalController.isNetworkAvailable.value = false;
+    }
   }
 }
