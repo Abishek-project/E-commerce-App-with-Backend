@@ -53,9 +53,9 @@ class AdminOrderView extends GetView<AdminController> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                childAspectRatio: 0.75,
+                                childAspectRatio: 0.80,
                                 crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
+                                mainAxisSpacing: 5),
                         itemBuilder: (context, index) {
                           return OrderCard(
                             onTap: (() {
@@ -63,8 +63,8 @@ class AdminOrderView extends GetView<AdminController> {
                                   arguments:
                                       controller.allOrderProducts[index]);
                             }),
-                            image: controller.allOrderProducts[index]
-                                .products[index].images[0],
+                            image: controller
+                                .allOrderProducts[index].products[0].images[0],
                           );
                         },
                       ),

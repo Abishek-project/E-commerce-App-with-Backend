@@ -14,26 +14,18 @@ class OrderCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Card(
-            shape: RoundedRectangleBorder(
+          Container(
+            height: 175,
+            width: 200,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Appcolors.lightGray13,
               borderRadius: BorderRadius.circular(15),
             ),
-            child: Column(
-              children: [
-                Container(
-                  height: 200,
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Appcolors.lightGray13,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Image.network(
-                    image,
-                  ),
-                ),
-              ],
+            child: Image.network(
+              image,
             ),
           ),
           const SizedBox(height: 5),

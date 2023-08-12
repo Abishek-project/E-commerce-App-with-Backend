@@ -21,97 +21,92 @@ class CartCart extends StatelessWidget {
   void Function() onDecreasePressed;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.10,
-              width: MediaQuery.of(context).size.width * 0.22,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Appcolors.lightGray13,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Image.network(
-                image,
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.10,
+            width: MediaQuery.of(context).size.width * 0.22,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Appcolors.lightGray13,
+              borderRadius: BorderRadius.circular(15),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.06,
+            child: Image.network(
+              image,
             ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    productName,
-                    style: AppTypography.bodyMedium2,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(
-                    height: 6,
-                  ),
-                  Text(
-                    ' \₹$productPrice',
-                    style: AppTypography.appSubTitle3
-                        .copyWith(color: Appcolors.appBlack),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(4),
-              margin: const EdgeInsets.only(right: 5),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Appcolors.darkGray,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.06,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  productName,
+                  style: AppTypography.bodyMedium2,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    onPressed: onDecreasePressed,
-                    icon: Icon(
-                      Icons.remove,
-                      size: 20,
-                      color: Appcolors.appBlack,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    quantity.toString(),
-                    style: AppTypography.appSubTitlebold,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                    onPressed: onIncreasePressed,
-                    icon: const Icon(
-                      Icons.add,
-                      size: 20,
-                      color: Appcolors.appMainColor,
-                    ),
-                  ),
-                ],
-              ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  ' \₹$productPrice',
+                  style: AppTypography.appSubTitle3
+                      .copyWith(color: Appcolors.appBlack),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.only(right: 5),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Appcolors.darkGray,
+              ),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: onDecreasePressed,
+                  icon: Icon(
+                    Icons.remove,
+                    size: 20,
+                    color: Appcolors.appBlack,
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  quantity.toString(),
+                  style: AppTypography.appSubTitlebold,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: onIncreasePressed,
+                  icon: const Icon(
+                    Icons.add,
+                    size: 20,
+                    color: Appcolors.appMainColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

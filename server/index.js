@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
+const notificationRouter = require("./routes/push-notification");
 // init
 const app = express();
 const Port = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
 app.use(userRouter);
+app.use(notificationRouter);
 // connections
 mongoose.connect(DB).then(() => {
     console.log("DB conneted")

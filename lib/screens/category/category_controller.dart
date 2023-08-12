@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:ecommerce/screens/category/category_variables.dart';
+import 'package:ecommerce/services/user_services.dart';
 import 'package:get/get.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import '../../models/product.dart';
 import '../components/error_handling.dart';

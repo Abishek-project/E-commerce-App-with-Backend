@@ -147,7 +147,7 @@ userRouter.post("/order", auth, async (req, res) => {
                         quantity: cart[i].quantity
                     }
                 )
-                console.log(productList);
+
                 await product.save();
             }
             else {
@@ -187,7 +187,7 @@ userRouter.get("/order-me", auth, async (req, res) => {
 
 userRouter.get("/user-allProducts", auth, async (req, res) => {
     try {
-        console.log("hi");
+
         const products = await Product.find({});
         res.send(products);
     } catch (error) {

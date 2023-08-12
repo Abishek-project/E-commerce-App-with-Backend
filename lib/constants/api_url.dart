@@ -20,4 +20,5 @@ class ApiUrl {
   static String changeOrderStatus = "/admin/change-order-status";
   static String analytics = "/admin/analytics";
   static String userAllProducts = "/user-allProducts";
+  static String notification = "/send-notification";
 }

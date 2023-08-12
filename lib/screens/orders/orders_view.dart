@@ -75,7 +75,7 @@ class OrderView extends GetView<OrderController> {
                                 crossAxisCount: 2,
                                 childAspectRatio: 0.75,
                                 crossAxisSpacing: 20,
-                                mainAxisSpacing: 20),
+                                mainAxisSpacing: 10),
                         itemBuilder: (context, index) {
                           return OrderCard(
                             onTap: (() {
@@ -83,7 +83,7 @@ class OrderView extends GetView<OrderController> {
                                   arguments: controller.orderProducts[index]);
                             }),
                             image: controller
-                                .orderProducts[index].products[index].images[0],
+                                .orderProducts[index].products[0].images[0],
                           );
                         },
                       ),

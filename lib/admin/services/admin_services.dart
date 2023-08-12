@@ -70,7 +70,7 @@ class AdminService {
   getAllProducts() async {
     try {
       http.Response response =
-          await http.post(Uri.parse("$url$getAllProduct"), headers: headers);
+          await http.get(Uri.parse("$url$getAllProduct"), headers: headers);
 
       return response;
     } catch (e) {

@@ -13,6 +13,7 @@ class UserServices {
   String order = ApiUrl.order;
   String orderMe = ApiUrl.orderMe;
   String userAllProducts = ApiUrl.userAllProducts;
+  String notification = ApiUrl.notification;
 
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
@@ -86,6 +87,24 @@ class UserServices {
     try {
       http.Response response =
           await http.get(Uri.parse("$url$userAllProducts"), headers: headers);
+
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  sentNotification(message, screen) async {
+    final Map<String, String> headerss = {'Content-Type': 'application/json'};
+    final Map<String, dynamic> body = {
+      'playerId':
+          GlobalController.deviceId, // Use the playerId obtained earlier
+      'message': message,
+      "screen": screen,
+    };
+    try {
+      http.Response response = await http.post(Uri.parse("$url$notification"),
+          headers: headerss, body: jsonEncode(body));
 
       return response;
     } catch (e) {

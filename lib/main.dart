@@ -7,13 +7,40 @@ import 'package:ecommerce/screens/login&register/login_binding.dart';
 import 'package:ecommerce/screens/main/main_view_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'constants/shared_prefrences.dart';
 import 'controller/user_controller.dart';
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+  OneSignal.shared.setAppId(GlobalController.oneSignalId);
+  // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+  OneSignal.shared
+      .promptUserForPushNotificationPermission()
+      .then((accepted) {});
+
+  OneSignal.shared
+      .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+    final customData = result.notification.additionalData;
+    final screen = customData!['screen'];
+    if (screen == "orderScreen") {
+      try {
+        Get.toNamed(AppPaths.orderView);
+      } catch (e) {
+        rethrow;
+      }
+    }
+  });
+
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  var data = pref.getString(SharedPreferenceKey.devicetoken);
+  GlobalController.deviceId = data.toString();
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark.copyWith(

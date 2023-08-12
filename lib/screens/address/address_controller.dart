@@ -50,6 +50,8 @@ class AddressController extends GetxController with AddressVariables {
               totalPrice.value,
               addressToBeUsed.value);
           if (responseOrder.statusCode == 200) {
+            await userServices.sentNotification(
+                "Your order was placed successfully!", "orderScreen");
             GlobalController.appUser.value!.cart = [];
 
             Navigator.pop(context);
@@ -87,6 +89,9 @@ class AddressController extends GetxController with AddressVariables {
           addressToBeUsed.value);
 
       if (response.statusCode == 200) {
+        await userServices.sentNotification(
+            "Order successful! You'll soon receive your product",
+            "orderScreen");
         Navigator.pop(context);
         showCupertinoDialog(
           context: context,

@@ -27,7 +27,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               children: [
                 appBar(),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             onPageChanged: (index, reason) {
                               controller.selectedIndex.value = index;
                             },
-                            height: 200),
+                            height: 175),
                       ),
                       controller.product.value!.images.length > 1
                           ? productCountDot()

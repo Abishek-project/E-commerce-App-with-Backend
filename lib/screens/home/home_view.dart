@@ -63,7 +63,7 @@ class Homeview extends GetView<HomeViewController> {
                     title: AppStrings.specialOffers),
 
                 // Special offers widget..
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                 const SpecialOffers(),
 
                 // Popular products heading..
@@ -74,7 +74,7 @@ class Homeview extends GetView<HomeViewController> {
                           .showAlertSnackbar(AppStrings.commingSoon);
                     }),
                     title: AppStrings.popularProducts),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
 
                 FutureBuilder(
                   future: controller.getPopularProducts(),
