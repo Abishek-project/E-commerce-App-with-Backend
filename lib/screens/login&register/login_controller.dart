@@ -40,6 +40,7 @@ class LoginAndRegisterationController extends GetxController
       }
     } catch (e) {
       isSignUp.value = false;
+      Navigator.pop(context);
       commonWidgetFuncions.showAlertSnackbar(e.toString());
     }
   }
@@ -66,6 +67,7 @@ class LoginAndRegisterationController extends GetxController
       }
     } catch (e) {
       isLogin.value = false;
+      Navigator.pop(context);
       commonWidgetFuncions.showAlertSnackbar(e.toString());
     }
   }

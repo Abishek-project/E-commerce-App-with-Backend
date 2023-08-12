@@ -184,4 +184,14 @@ userRouter.get("/order-me", auth, async (req, res) => {
         return req.status(500).json({ error: error.message })
     }
 })
+
+userRouter.get("/user-allProducts", auth, async (req, res) => {
+    try {
+        console.log("hi");
+        const products = await Product.find({});
+        res.send(products);
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+})
 module.exports = userRouter;

@@ -7,7 +7,7 @@ const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 // init
 const app = express();
-const Port = 3000;
+const Port = process.env.PORT || 3000;
 const DB = "mongodb+srv://abishekabi992:7339174247@cluster0.zzxxouo.mongodb.net/"
 // middleware
 app.use(express.json());
@@ -22,6 +22,7 @@ mongoose.connect(DB).then(() => {
 }).catch((e) => {
     console.log(e);
 })
+
 app.listen(Port, "0.0.0.0", () => {
     console.log(`connected at port ${Port}`);
 })

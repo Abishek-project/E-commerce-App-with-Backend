@@ -13,7 +13,13 @@ class CategoryController extends GetxController with CategoryVariables {
   }
 
   getProducts(category) async {
-    var response = await homeService.getProductsByCategory(category);
+    var response;
+    if (category == "All categories") {
+      response = await userServices.getAllProducts();
+    } else {
+      response = await homeService.getProductsByCategory(category);
+    }
+
     categoryProducts.value = [];
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);

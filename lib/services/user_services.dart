@@ -12,6 +12,7 @@ class UserServices {
   String userAddress = ApiUrl.saveUserAddress;
   String order = ApiUrl.order;
   String orderMe = ApiUrl.orderMe;
+  String userAllProducts = ApiUrl.userAllProducts;
 
   var headers = <String, String>{
     "content-type": "application/json; charset=utf-8",
@@ -75,6 +76,17 @@ class UserServices {
     try {
       http.Response response =
           await http.get(Uri.parse("$url$orderMe"), headers: headers);
+      return response;
+    } catch (e) {
+      CommonWidgetFuncions().showAlertSnackbar(e.toString());
+    }
+  }
+
+  getAllProducts() async {
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$url$userAllProducts"), headers: headers);
+
       return response;
     } catch (e) {
       CommonWidgetFuncions().showAlertSnackbar(e.toString());
