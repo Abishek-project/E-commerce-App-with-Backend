@@ -90,8 +90,7 @@ class AddressController extends GetxController with AddressVariables {
 
       if (response.statusCode == 200) {
         await userServices.sentNotification(
-            "Order successful! You'll soon receive your product",
-            "orderScreen");
+            "Your order was placed successfully!", "orderScreen");
         Navigator.pop(context);
         showCupertinoDialog(
           context: context,
