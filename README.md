@@ -4,7 +4,8 @@ Welcome to the EazyBuy Ecommerce App!
 
 EazyBuy is a comprehensive Ecommerce application that brings a seamless shopping experience to your fingertips. This app, developed with a user-friendly approach, consists of both customer and admin functionalities, along with robust backend support and push notification integration.
 
-## Key Features:
+![App UI](assets/home.png)
+ Key Features:
 
 - **Home Page:** Browse through a wide range of products right from the comfort of your device. Discover featured products and deals conveniently.
 - **Search Page:** Easily find the products you're looking for using our powerful search functionality. Get instant results and quick access to desired items.
@@ -19,7 +20,10 @@ EazyBuy is a comprehensive Ecommerce application that brings a seamless shopping
 We're excited to bring you the EazyBuy Ecommerce App, where shopping meets convenience. Whether you're a shopper looking for your favorite products or an admin striving to provide an exceptional shopping platform, EazyBuy has you covered.
 
 Feel free to explore the codebase, contribute, and make this app even better! If you have any questions, concerns, or suggestions, please don't hesitate to reach out.
-
-Happy Shopping with EazyBuy! 🛒🛍️
+### Products
+![App UI](assets/products.png)
+### Admin Side
+![App UI](assets/Admin.png)
+## Happy Shopping with EazyBuy! 🛒🛍️
 
 
