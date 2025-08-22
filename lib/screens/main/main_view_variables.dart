@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
 
-class MainViewVariables {
+mixin MainViewVariables {
   RxInt selectedIndex = 0.obs;
 }

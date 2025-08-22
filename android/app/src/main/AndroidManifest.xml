@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ecommerce">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
      <!-- Add INTERNET permission here -->
    <uses-permission android:name="android.permission.INTERNET" /> 
    <application

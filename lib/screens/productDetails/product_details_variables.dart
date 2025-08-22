@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../models/product.dart';
 
-class ProductDetailsVariables {
+mixin ProductDetailsVariables {
   Rxn<Product> product = Rxn<Product>();
   RxInt selectedIndex = 0.obs;
   ProductService productService = ProductService();

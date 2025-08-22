@@ -3,7 +3,7 @@ import 'package:ecommerce/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginAndRegisterationVariable {
+mixin LoginAndRegisterationVariable {
   final TextEditingController loginEmail = TextEditingController();
   final TextEditingController loginPassword = TextEditingController();
   final TextEditingController registrationEmail = TextEditingController();

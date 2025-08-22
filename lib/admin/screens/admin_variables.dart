@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../services/admin_services.dart';
 
-class AdminVariables {
+mixin AdminVariables {
   RxInt selectedIndex = 0.obs;
   TextEditingController productNameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();

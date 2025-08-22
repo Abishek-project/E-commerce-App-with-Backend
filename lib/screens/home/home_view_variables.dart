@@ -2,7 +2,7 @@ import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeViewVariable {
+mixin HomeViewVariable {
   final TextEditingController searchController = TextEditingController();
   List allCategories = [
     {"name": "All categories", "icon": ""},

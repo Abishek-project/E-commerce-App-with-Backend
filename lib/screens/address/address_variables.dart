@@ -2,7 +2,7 @@ import 'package:ecommerce/services/user_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class AddressVariables {
+mixin AddressVariables {
   TextEditingController flatNameController = TextEditingController();
   TextEditingController areaNameController = TextEditingController();
   TextEditingController pincodeController = TextEditingController();

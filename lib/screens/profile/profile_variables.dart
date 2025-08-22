@@ -1,5 +1,5 @@
 import 'package:ecommerce/screens/components/common_widget_functions.dart';
 
-class ProfileVariables {
+mixin ProfileVariables {
   CommonWidgetFuncions commonWidgetFuncions = CommonWidgetFuncions();
 }
