@@ -1,6 +1,6 @@
 class ApiUrl {
-  // static String baseUrl = "https://ezay-buy.onrender.com";
-  static String baseUrl = "http://localhost:3000";
+  static String baseUrl = "https://ezay-buy.onrender.com";
+  // static String baseUrl = "http://localhost:3000";
   static String signUp = "/signup";
   static String signIn = "/signin";
   static String tokenIsValid = "/tokenIsValid";
