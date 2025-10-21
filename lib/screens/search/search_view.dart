@@ -4,7 +4,7 @@ import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/controller/global_controller.dart';
-import 'package:ecommerce/screens/components/empty_search_Card.dart';
+import 'package:ecommerce/screens/components/empty_search_card.dart';
 import 'package:ecommerce/screens/search/search_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
