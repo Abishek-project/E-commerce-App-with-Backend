@@ -41,8 +41,8 @@ class AuthService {
     var body = {"email": email, "password": password};
     try {
       http.Response response = await http.post(
-        headers: headers,
         Uri.parse('$url$signInEndpoint'),
+        headers: headers,
         body: jsonEncode(body),
       );
       return response;

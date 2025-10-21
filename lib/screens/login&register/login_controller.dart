@@ -6,6 +6,7 @@ import 'package:ecommerce/models/user.dart';
 import 'package:ecommerce/screens/components/error_handling.dart';
 import 'package:ecommerce/screens/login&register/login_variable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -60,9 +61,12 @@ class LoginAndRegisterationController extends GetxController
         var resBody = jsonDecode(response.body);
         await pref.setString(SharedPreferenceKey.token, resBody["token"]);
         await pref.setString(SharedPreferenceKey.appUser, response.body);
-        var status = await OneSignal.shared.getDeviceState();
-        GlobalController.deviceId = status!.userId!;
-        await pref.setString(SharedPreferenceKey.devicetoken, status.userId!);
+        if (!kIsWeb) {
+          var status = await OneSignal.shared.getDeviceState();
+          GlobalController.deviceId = status!.userId!;
+          await pref.setString(SharedPreferenceKey.devicetoken, status.userId!);
+        }
+
         GlobalController.appUser.value = User.fromJson(response.body);
         Navigator.pop(context);
         GlobalController.appUser.value!.type == "admin"

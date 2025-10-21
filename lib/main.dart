@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:ecommerce/admin/screens/admin_binding.dart';
 import 'package:ecommerce/app_routing.dart';
 import 'package:ecommerce/constants/app_path.dart';
@@ -5,6 +6,7 @@ import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/components/common_widget_functions.dart';
 import 'package:ecommerce/screens/login&register/login_binding.dart';
 import 'package:ecommerce/screens/main/main_view_binding.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,26 +19,27 @@ import 'controller/user_controller.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  if (!kIsWeb) {
+    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+    OneSignal.shared.setAppId(GlobalController.oneSignalId);
+    // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+    OneSignal.shared
+        .promptUserForPushNotificationPermission()
+        .then((accepted) {});
 
-  OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-  OneSignal.shared.setAppId(GlobalController.oneSignalId);
-  // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
-  OneSignal.shared
-      .promptUserForPushNotificationPermission()
-      .then((accepted) {});
-
-  OneSignal.shared
-      .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
-    final customData = result.notification.additionalData;
-    final screen = customData!['screen'];
-    if (screen == "orderScreen") {
-      try {
-        Get.toNamed(AppPaths.orderView);
-      } catch (e) {
-        rethrow;
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      final customData = result.notification.additionalData;
+      final screen = customData!['screen'];
+      if (screen == "orderScreen") {
+        try {
+          Get.toNamed(AppPaths.orderView);
+        } catch (e) {
+          rethrow;
+        }
       }
-    }
-  });
+    });
+  }
 
   SharedPreferences pref = await SharedPreferences.getInstance();
   var data = pref.getString(SharedPreferenceKey.devicetoken);
@@ -58,7 +61,14 @@ void main() async {
   await userController.getUserData();
   // print(GlobalController.appUser);
   // FlutterNativeSplash.remove();
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      builder: (context) => const MyApp(),
+      isToolbarVisible: false,
+      enabled: true,
+      devices: [Devices.ios.iPhone13],
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -90,6 +100,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       title: 'E-Commerce',
       theme: ThemeData(),
