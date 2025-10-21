@@ -1,20 +1,33 @@
-name: Gh-Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [preview]
+    branches:
+      - preview # Trigger deployment when pushing to 'preview'
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - uses: actions/checkout@v4
+
+      # Step 2: Set up Flutter
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.19.0
+          flutter-version: "3.19.0"
+
+      # Step 3: Install dependencies
+      - name: Get Flutter dependencies
+        run: flutter pub get
+
+      # Step 4: Build the Flutter web app
+      - name: Build web
+        run: flutter build web --release
+
+      # Step 5: Deploy to gh-pages using flutter-gh-pages
       - uses: bluefireteam/flutter-gh-pages@v9
         with:
-          baseHref: /E-commerce-App-with-Backend/
-#
-
+          baseHref: /E-commerce-App-with-Backend/ # Adjust if your project name/path is different
+          folder: build/web # Folder where Flutter builds the web app
