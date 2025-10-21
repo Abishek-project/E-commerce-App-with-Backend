@@ -46,3 +46,7 @@ app.*.map.json
 
 # release
 key.properties
+
+
+# Ignore Node.js dependencies
+server/node_modules/
