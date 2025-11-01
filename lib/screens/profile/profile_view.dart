@@ -163,19 +163,6 @@ class ProfileView extends GetView<ProfileController> {
         AppStrings.profile,
         style: AppTypography.bodyMedium2.copyWith(color: Appcolors.appWhite),
       ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            controller.commonWidgetFuncions
-                .showAlertSnackbar(AppStrings.commingSoon);
-          },
-          child: Text(
-            AppStrings.edit,
-            style: AppTypography.appSubTitlebold
-                .copyWith(color: Appcolors.appWhite),
-          ),
-        ),
-      ],
     );
   }
 }

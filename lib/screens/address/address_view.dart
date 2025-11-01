@@ -92,7 +92,8 @@ class AddressView extends GetView<AddressController> {
                                                 .copyWith(
                                                     color: Appcolors
                                                         .appMainColor
-                                                        .withOpacity(0.9)),
+                                                        .withOpacity(0.9),
+                                                    fontSize: 14),
                                           ),
                                           SizedBox(
                                             height: MediaQuery.of(context)
@@ -242,7 +243,10 @@ class AddressView extends GetView<AddressController> {
                               controller.pincodeController.clear();
                               controller.cityController.clear();
                             },
-                            child: const Text(AppStrings.payNow),
+                            child: const Text(
+                              AppStrings.payNow,
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         )
                       ],

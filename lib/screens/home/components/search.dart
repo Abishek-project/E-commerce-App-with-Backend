@@ -1,12 +1,14 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-
 import '../../../constants/app_colors.dart';
 
 class SearchWidget extends StatelessWidget {
-  void Function(String)? onSubmitted;
-  TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final TextEditingController? controller;
+  final _debouncer = Debouncer(milliseconds: 500);
+
   SearchWidget({
-    this.onSubmitted,
+    this.onChanged,
     this.controller,
     Key? key,
   }) : super(key: key);
@@ -21,23 +23,38 @@ class SearchWidget extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
-        onSubmitted: onSubmitted,
-        onChanged: (value) {},
+        onChanged: (value) {
+          _debouncer.run(() {
+            if (onChanged != null) onChanged!(value);
+          });
+        },
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 15),
           border: InputBorder.none,
           focusedBorder: InputBorder.none,
           enabledBorder: InputBorder.none,
           hintText: "Search product",
-          hintStyle: TextStyle(
-            color: Appcolors.lightGray09,
-          ),
-          prefixIcon: Icon(
-            Icons.search,
-            color: Appcolors.lightGray09,
-          ),
+          hintStyle: TextStyle(color: Appcolors.lightGray09),
+          prefixIcon: Icon(Icons.search, color: Appcolors.lightGray09),
         ),
       ),
     );
+  }
+}
+
+class Debouncer {
+  final int milliseconds;
+  VoidCallback? action;
+  Timer? _timer;
+
+  Debouncer({required this.milliseconds});
+
+  run(VoidCallback action) {
+    _timer?.cancel();
+    _timer = Timer(Duration(milliseconds: milliseconds), action);
+  }
+
+  dispose() {
+    _timer?.cancel();
   }
 }

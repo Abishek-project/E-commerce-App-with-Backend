@@ -4,9 +4,12 @@ import 'package:ecommerce/constants/app_colors.dart';
 import 'package:ecommerce/constants/app_strings.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
 import 'package:ecommerce/controller/global_controller.dart';
+import 'package:ecommerce/screens/cart/cart_view.dart';
 import 'package:ecommerce/screens/components/custom_button.dart';
 import 'package:ecommerce/screens/components/rating.dart';
+import 'package:ecommerce/screens/main/main_view_controller.dart';
 import 'package:ecommerce/screens/productDetails/product_details_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -25,7 +28,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
           children: [
             Column(
               children: [
-                appBar(),
+                appBar(context),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width,
@@ -188,7 +191,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       },
                     )),
                 const SizedBox(
-                  height: 30,
+                  height: 12,
                 ),
                 Button(
                     onTap: () async {
@@ -210,7 +213,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
     );
   }
 
-  Padding appBar() {
+  Padding appBar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
@@ -222,15 +225,22 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
             },
             child: SvgPicture.asset(
               AppAssets.backArrow,
-              height: 25,
-              width: 25,
+              height: 28,
+              width: 28,
               color: Appcolors.appBlackDark,
             ),
           ),
           Stack(
             children: [
-              SvgPicture.asset(
-                AppAssets.shopBag,
+              GestureDetector(
+                onTap: () {
+                  final mainController = Get.find<MainViewController>();
+                  mainController.changeTabIndex(1);
+                  Get.back(); // Close ProductDetailsView
+                },
+                child: SvgPicture.asset(
+                  AppAssets.shopBag,
+                ),
               ),
               Positioned(
                 top: 0,

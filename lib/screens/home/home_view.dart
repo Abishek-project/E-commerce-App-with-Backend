@@ -13,6 +13,7 @@ import 'package:ecommerce/screens/home/components/search.dart';
 import 'package:ecommerce/screens/home/components/section_tile.dart';
 import 'package:ecommerce/screens/home/components/special_offers.dart';
 import 'package:ecommerce/screens/home/home_view_controller.dart';
+import 'package:ecommerce/screens/main/main_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,8 +58,8 @@ class Homeview extends GetView<HomeViewController> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 SectionTitle(
                     press: (() {
-                      controller.commonWidgetFuncions
-                          .showAlertSnackbar(AppStrings.commingSoon);
+                      Get.toNamed(AppPaths.category,
+                          arguments: "All categories");
                     }),
                     title: AppStrings.specialOffers),
 
@@ -70,8 +71,8 @@ class Homeview extends GetView<HomeViewController> {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 SectionTitle(
                     press: (() {
-                      controller.commonWidgetFuncions
-                          .showAlertSnackbar(AppStrings.commingSoon);
+                      Get.toNamed(AppPaths.category,
+                          arguments: "All categories");
                     }),
                     title: AppStrings.popularProducts),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -176,12 +177,19 @@ class Homeview extends GetView<HomeViewController> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SearchWidget(
+          onChanged: (query) {
+            if (query.isNotEmpty) {
+              controller.navigateToSearchView(query); // your API call
+            }
+          },
           controller: controller.searchController,
-          onSubmitted: (val) => controller.navigateToSearchView(val.trim()),
         ),
         Obx(() => IconBtnWithCounter(
               svgSrc: AppAssets.cart,
-              press: (() {}),
+              press: (() {
+                final mainController = Get.find<MainViewController>();
+                mainController.changeTabIndex(1);
+              }),
               numOfitem: GlobalController.appUser.value!.cart.length,
             )),
         IconBtnWithCounter(

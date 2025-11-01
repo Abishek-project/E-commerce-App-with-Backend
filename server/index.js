@@ -14,6 +14,7 @@ const Port = process.env.PORT || 3000;
 const DB =
   "mongodb+srv://abishekabi992:7339174247@cluster0.zzxxouo.mongodb.net/";
 // middleware
+app.use(cors());
 app.use(express.json());
 
 app.use(authRouter);
