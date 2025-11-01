@@ -7,6 +7,7 @@ import 'package:ecommerce/controller/global_controller.dart';
 import 'package:ecommerce/screens/cart/cart_view.dart';
 import 'package:ecommerce/screens/components/custom_button.dart';
 import 'package:ecommerce/screens/components/rating.dart';
+import 'package:ecommerce/screens/main/main_view.dart';
 import 'package:ecommerce/screens/main/main_view_controller.dart';
 import 'package:ecommerce/screens/productDetails/product_details_controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -232,11 +233,11 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
           ),
           Stack(
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   final mainController = Get.find<MainViewController>();
                   mainController.changeTabIndex(1);
-                  Get.back(); // Close ProductDetailsView
+                  Get.until((route) => Get.currentRoute == '/mainView');
                 },
                 child: SvgPicture.asset(
                   AppAssets.shopBag,

@@ -110,17 +110,6 @@ class CategoryView extends GetView<CategoryController> {
         style: AppTypography.bodyMedium2,
       ),
       centerTitle: true,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 8, top: 5),
-          child: SvgPicture.asset(
-            AppAssets.shopBag,
-            height: 22,
-            width: 22,
-            color: Appcolors.appWhite,
-          ),
-        )
-      ],
     );
   }
 }
