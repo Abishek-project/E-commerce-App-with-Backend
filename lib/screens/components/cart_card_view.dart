@@ -38,7 +38,7 @@ class CartCart extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.06,
+            width: MediaQuery.of(context).size.width * 0.02,
           ),
           Expanded(
             child: Column(

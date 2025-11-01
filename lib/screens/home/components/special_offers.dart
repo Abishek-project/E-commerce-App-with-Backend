@@ -1,7 +1,9 @@
 import 'package:ecommerce/constants/app_colors.dart';
+import 'package:ecommerce/constants/app_path.dart';
 import 'package:ecommerce/constants/app_textStyle.dart';
-import 'package:ecommerce/screens/home/components/section_tile.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SpecialOffers extends StatelessWidget {
   const SpecialOffers({
@@ -21,14 +23,18 @@ class SpecialOffers extends StatelessWidget {
                 image: "assets/Image Banner 2.png",
                 category: "Smartphone",
                 numOfBrands: 18,
-                press: () {},
+                press: () {
+                  Get.toNamed(AppPaths.category, arguments: "Mobiles");
+                },
               ),
               const SizedBox(width: 10),
               SpecialOfferCard(
                 image: "assets/Image Banner 3.png",
                 category: "Fashion",
                 numOfBrands: 24,
-                press: () {},
+                press: () {
+                  Get.toNamed(AppPaths.category, arguments: "Fashion");
+                },
               ),
               const SizedBox(width: 20),
             ],

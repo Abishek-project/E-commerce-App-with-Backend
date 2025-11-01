@@ -136,9 +136,9 @@ class CartView extends GetView<CartController> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Icon(Icons.menu),
           RichText(
             text: TextSpan(
               children: [
@@ -153,7 +153,6 @@ class CartView extends GetView<CartController> {
               ],
             ),
           ),
-          const Icon(Icons.more_horiz)
         ],
       ),
     );
