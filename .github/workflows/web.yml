@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - preview # Trigger deployment when pushing to 'preview'
+      - preview-web # Trigger deployment when pushing to 'preview'
 
 jobs:
   build-and-deploy:
