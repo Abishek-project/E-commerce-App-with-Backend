@@ -23,15 +23,17 @@ jobs:
       - name: Get Flutter dependencies
         run: flutter pub get
 
-      # Step 4: Build Flutter web into /docs folder
+      # Step 4: Build web into /docs folder
       - name: Build web into docs
-        run:
-          flutter build web --release --base-href /E-commerce-App-with-Backend/ && \
-          rm -rf docs && \
+        shell: bash   # 👈 Force bash
+        run: |
+          flutter build web --release --base-href /E-commerce-App-with-Backend/
+          rm -rf docs
           mv build/web docs
 
       # Step 5: Commit and push updated /docs
       - name: Commit and push changes
+        shell: bash   # 👈 also ensure bash here
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
