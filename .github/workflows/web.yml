@@ -1,37 +1,5 @@
-name: Deploy Flutter Web to /docs
-
 on:
   push:
     branches:
-      - preview-web # 👈 same branch your Pages uses
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.19.0"
-
-      - name: Clean and install dependencies
-        run: flutter clean && flutter pub get
-
-      - name: Build Flutter web
-        run: flutter build web --release --base-href /E-commerce-App-with-Backend/
-
-      - name: Copy build to /docs
-        run: |
-          rm -rf docs
-          mkdir docs
-          cp -r build/web/* docs/
-
-      - name: Commit and push changes to /docs
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add docs
-          git commit -m "Update GitHub Pages site" || echo "No changes to commit"
-          git push
+      - preview-web
+  workflow_dispatch:
