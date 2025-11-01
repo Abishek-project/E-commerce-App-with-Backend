@@ -1,33 +1,37 @@
-name: Deploy to GitHub Pages
+name: Deploy Flutter Web to /docs
 
 on:
   push:
     branches:
-      - preview-web # Trigger deployment when pushing to 'preview'
+      - preview-web # 👈 same branch your Pages uses
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - uses: actions/checkout@v4
 
-      # Step 2: Set up Flutter
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.19.0"
 
-      # Step 3: Install dependencies
-      - name: Get Flutter dependencies
-        run: flutter pub get
+      - name: Clean and install dependencies
+        run: flutter clean && flutter pub get
 
-      # Step 4: Build the Flutter web app
-      - name: Build web
-        run: flutter build web --release
+      - name: Build Flutter web
+        run: flutter build web --release --base-href /E-commerce-App-with-Backend/
 
-      # Step 5: Deploy to gh-pages using flutter-gh-pages
-      - uses: bluefireteam/flutter-gh-pages@v9
-        with:
-          baseHref: /E-commerce-App-with-Backend/ # Adjust if your project name/path is different
-          folder: build/web # Folder where Flutter builds the web app
+      - name: Copy build to /docs
+        run: |
+          rm -rf docs
+          mkdir docs
+          cp -r build/web/* docs/
+
+      - name: Commit and push changes to /docs
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs
+          git commit -m "Update GitHub Pages site" || echo "No changes to commit"
+          git push
