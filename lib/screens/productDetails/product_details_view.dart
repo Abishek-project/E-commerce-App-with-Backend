@@ -236,7 +236,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 onTap: () {
                   final mainController = Get.find<MainViewController>();
                   mainController.changeTabIndex(1);
-                  Get.back(); // Close ProductDetailsView
+                  Get.until((route) => Get.currentRoute == '/mainView');
                 },
                 child: SvgPicture.asset(
                   AppAssets.shopBag,
