@@ -172,7 +172,7 @@ class LoginView extends GetView<LoginAndRegisterationController> {
                 return null;
               },
               controller: controller.loginPassword,
-              obscureText: true,
+              obscureText: controller.isShowPassword.value,
               hintText: AppStrings.password,
               prefixIcon: Icon(
                 Icons.lock,
@@ -181,8 +181,8 @@ class LoginView extends GetView<LoginAndRegisterationController> {
               suffixIcon: IconButton(
                 icon: Icon(
                   controller.isShowPassword.value
-                      ? Icons.visibility
-                      : Icons.visibility_off,
+                      ? Icons.visibility_off
+                      : Icons.visibility,
                   color: Appcolors.lightGray09,
                 ),
                 onPressed: () {
