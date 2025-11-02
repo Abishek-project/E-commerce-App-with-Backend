@@ -2,25 +2,28 @@ import 'package:ecommerce/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
-  TextEditingController controller;
-  bool obscureText;
-  String hintText;
-  Widget? prefixIcon;
-  String? Function(String?)? validator;
-  Color? prefixIconColor;
-  int? maxLines;
-  FocusNode? focusNode;
-  TextFieldWidget(
-      {Key? key,
-      required this.controller,
-      required this.obscureText,
-      this.prefixIcon,
-      this.validator,
-      this.prefixIconColor,
-      this.maxLines = 1,
-      this.focusNode,
-      required this.hintText})
-      : super(key: key);
+  final TextEditingController controller;
+  final bool obscureText;
+  final String hintText;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final String? Function(String?)? validator;
+  final Color? prefixIconColor;
+  final int? maxLines;
+  final FocusNode? focusNode;
+
+  const TextFieldWidget({
+    Key? key,
+    required this.controller,
+    required this.obscureText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.validator,
+    this.prefixIconColor,
+    this.maxLines = 1,
+    this.focusNode,
+    required this.hintText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +36,19 @@ class TextFieldWidget extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor,
+        suffixIcon: suffixIcon, // 👈 Added
         hintText: hintText,
         enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
-            borderRadius: BorderRadius.circular(12)),
+          borderSide: const BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(12),
+        ),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade400),
-            borderRadius: BorderRadius.circular(12)),
+          borderSide: BorderSide(color: Colors.grey.shade400),
+          borderRadius: BorderRadius.circular(12),
+        ),
         fillColor: Appcolors.lightGray13,
         filled: true,
-        hintStyle: TextStyle(
-          color: Appcolors.lightGray09,
-        ),
+        hintStyle: TextStyle(color: Appcolors.lightGray09),
       ),
     );
   }

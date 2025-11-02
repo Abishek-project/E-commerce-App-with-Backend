@@ -135,24 +135,36 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
             ],
           ),
         ),
-        TextFieldWidget(
-          validator: (value) {
-            if (value == null || value == "") {
-              return AppStrings.enteryourpassword;
-            }
-            if (value.length < 6) {
-              return AppStrings.passwordValidation;
-            }
-            return null;
-          },
-          controller: controller.registrationPassword,
-          obscureText: true,
-          hintText: AppStrings.password,
-          prefixIcon: Icon(
-            Icons.lock,
-            color: Appcolors.lightGray09,
-          ),
-        ),
+        Obx(() => TextFieldWidget(
+              validator: (value) {
+                if (value == null || value == "") {
+                  return AppStrings.enteryourpassword;
+                }
+                if (value.length < 6) {
+                  return AppStrings.passwordValidation;
+                }
+                return null;
+              },
+              controller: controller.registrationPassword,
+              obscureText: controller.isShowPassword.value,
+              hintText: AppStrings.password,
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Appcolors.lightGray09,
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  controller.isShowPassword.value
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: Appcolors.lightGray09,
+                ),
+                onPressed: () {
+                  controller.isShowPassword.value =
+                      !controller.isShowPassword.value;
+                },
+              ),
+            )),
       ],
     );
   }
