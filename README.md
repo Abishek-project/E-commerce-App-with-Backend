@@ -1,5 +1,7 @@
 # EazyBuy Ecommerce App
 
+**🔗 [👉 Live Demo – Try It Here](https://abishek-project.github.io/E-commerce-App-with-Backend/)**  
+
 Welcome to the EazyBuy Ecommerce App!
 
 EazyBuy is a comprehensive Ecommerce application that brings a seamless shopping experience to your fingertips. This app, developed with a user-friendly approach, consists of both customer and admin functionalities, along with robust backend support and push notification integration.
