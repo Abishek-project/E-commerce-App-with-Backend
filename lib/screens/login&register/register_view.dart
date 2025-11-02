@@ -155,8 +155,8 @@ class RegistrationView extends GetView<LoginAndRegisterationController> {
               suffixIcon: IconButton(
                 icon: Icon(
                   controller.isShowPassword.value
-                      ? Icons.visibility
-                      : Icons.visibility_off,
+                      ? Icons.visibility_off
+                      : Icons.visibility,
                   color: Appcolors.lightGray09,
                 ),
                 onPressed: () {
