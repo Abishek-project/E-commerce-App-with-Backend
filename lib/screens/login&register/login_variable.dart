@@ -15,4 +15,5 @@ mixin LoginAndRegisterationVariable {
   RxBool isSignUp = false.obs;
   RxBool isLogin = false.obs;
   CommonWidgetFuncions commonWidgetFuncions = CommonWidgetFuncions();
+    RxBool isShowPassword = false.obs;
 }
